@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Register.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -19,6 +21,8 @@ function Register() {
     });
 
     const [successMessage, setSuccessMessage] = useState("");
+    const [isFormVisible, setFormVisible] = useState(true);
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -74,11 +78,19 @@ function Register() {
             setFormData({ firstName: "", lastName: "", email: "", password: "", mobile: "" });
             setErrors({ firstName: "", lastName: "", email: "", password: "", mobile: "" });
             setSuccessMessage("Registration successful");
+            
+            // Delay navigation to show success message
+            setTimeout(() => {
+                navigate('/login');
+            }, 2000); // 2 seconds delay
         }
     };
 
     return (
-        <div className="register-container">
+        <div className={`register-container ${isFormVisible ? '' : 'hidden'}`}>
+            <div className="close-icon" onClick={() => setFormVisible(false)}>
+                <i className="fas fa-times"></i>
+            </div>
             <h2>REGISTER</h2>
             {successMessage && <div className="success">{successMessage}</div>}
             <form onSubmit={handleSubmit}>
@@ -143,7 +155,7 @@ function Register() {
                     {errors.mobile && <div className="error">{errors.mobile}</div>}
                 </div>
                 <button type="submit">Register</button>
-                <p>Already registered? <a href="/login">Login</a></p>
+                <p>Already registered? <Link to="/login">Login</Link></p>
             </form>
         </div>
     );

@@ -1,0 +1,116 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  z-index: 1000;
+  position: fixed; 
+  width: 100%;
+  top:0;
+}
+
+
+.title {
+  font-weight: bolder;
+  font-size: 1.8rem;
+  position: absolute;
+  transform: translateX(45%);
+  background: linear-gradient(90deg, #ff7a18, #af0069 70%, #2ea3ab);
+  background-size: 200% 200%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shiny 3s infinite linear;
+}
+
+@keyframes shiny {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.navbar-logo img {
+  height: 50px;
+  width: 50px; 
+  border-radius: 50%; 
+  object-fit: cover;
+}
+
+.navbar-center {
+  display: flex;
+  flex: 2;
+  justify-content:center;
+  align-items:flex-end;
+  margin-left: 250px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 15px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input {
+  padding: 8px 18px;
+  border-radius: 3px;
+  border: none;
+  margin-right: 10px;
+}
+
+.navbar-search img {
+  height: 27px;
+  margin-bottom: 5px; 
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: #e84d56;
+  color: #fff;
+  width: 75px;
+  margin-right: 40px;
+}
+
+.login-button:hover {
+  background-color: #d43b48;
+}
+
+.navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input {
+  padding: 8px 40px 8px 18px; /* Add extra padding on the right for the icon */
+  border-radius: 3px;
+  border: none;
+  margin-right: 60px;
+}
+
+.navbar-search .search-icon {
+  position: absolute;
+  right: 70px; /* Adjust this value to your needs */
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  margin-bottom: 4px;
+}
