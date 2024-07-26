@@ -22,6 +22,7 @@
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: bold;
+  color: white; /* Ensures the heading text is white */
 }
 
 .footer-section ul {
@@ -34,7 +35,7 @@
 }
 
 .footer-section ul li a {
-  color: white;
+  color: white; /* Ensures the link text is white */
   text-decoration: none;
   font-size: 16px;
 }
@@ -46,10 +47,11 @@
 .footer-section p {
   font-size: 16px;
   margin: 5px 0;
+  color: white; /* Ensures paragraph text is white */
 }
 
 .social-icons a {
-  color: white;
+  color: white !important; /* Ensures social media icons are white */
   margin-right: 10px;
   font-size: 20px;
   transition: color 0.3s;
@@ -62,6 +64,7 @@
 .newsletter p {
   margin-bottom: 10px;
   font-size: 16px;
+  color: white; /* Ensures newsletter text is white */
 }
 
 .newsletter form {
@@ -77,21 +80,30 @@
   width: 450px; 
 }
 
-.newsletter .newsletter-submit{
-   width: 100px;
-   margin-left: 15px;
-   margin-bottom: 5px;
+.newsletter .newsletter-submit {
+  width: 100px;
+  margin-left: 15px;
+  margin-bottom: 5px;
 }
 
 .newsletter button {
   padding: 10px 5px;
   border: none;
   background-color: #e84d56;
-  color: white;
+  color: white; /* Ensures button text is white */
   cursor: pointer;
   border-radius: 0 3px 3px 0;
 }
 
 .newsletter button:hover {
   background-color: #d43b48;
+}
+
+/* Ensure text color for the contact info section */
+.footer-section.contact-info p {
+  color: white; /* Ensures address text is white */
+}
+
+.fab {
+  color: white !important; /* Forces FontAwesome icons to be white */
 }

@@ -15,12 +15,12 @@ const About = () => {
         <h3 className="about-title">About Us</h3>
         <h1 className="welcome-text">Welcome to SHOPTIMIZ</h1>
         <p className="about-content">
-          Welcome to Shoptimist, your ultimate destination for fresh produce and daily essentials.
-          At Shoptimist, we believe in delivering quality and convenience to your doorstep.
+          Welcome to Shoptimiz, your ultimate destination for fresh produce and daily essentials.
+          At Shoptimiz, we believe in delivering quality and convenience to your doorstep.
           Explore a wide range of products curated to meet your everyday needs.
           Our commitment is to provide you with the best shopping experience.
           Join us in our journey towards a healthier, happier lifestyle.
-          Shop smart, shop with Shoptimist!
+          Shop smart, shop with Shoptimiz!
         </p>
         <div className="stats-box">
           <div className="stat-item">
@@ -41,10 +41,10 @@ const About = () => {
         </div>
       </div>
       <div className="image-section">
-        <img src={aboutImage1} alt="Supermarket 1" className="supermarket-image image-1" />
+        <img src={aboutImage4} alt="Supermarket 1" className="supermarket-image image-1" />
         <img src={aboutImage2} alt="Supermarket 2" className="supermarket-image image-2" />
         <img src={aboutImage3} alt="Supermarket 3" className="supermarket-image image-3" />
-        <img src={aboutImage4} alt="Supermarket 4" className="supermarket-image image-4" />
+        <img src={aboutImage1} alt="Supermarket 4" className="supermarket-image image-4" />
       </div>
     </div>
   );
