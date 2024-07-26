@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  /* background-color: #333; */
+  background-color: #223447;
   color: white;
   z-index: 1000;
   position: fixed; 

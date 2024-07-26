@@ -3,9 +3,9 @@ import '../assets/css/Home.css';
 
 import home1 from '../assets/images/home1.jpg'; 
 import home2 from '../assets/images/home2.jpg'; 
-// import home3 from '../assets/images/home3.jpg'; 
+import home3 from '../assets/images/home3.jpg'; 
 
-const images = [home1, home1, home1];
+const images = [home1, home2, home3];
 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
