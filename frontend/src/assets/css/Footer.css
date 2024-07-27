@@ -98,12 +98,10 @@
 .newsletter button:hover {
   background-color: #d43b48;
 }
-
-/* Ensure text color for the contact info section */
 .footer-section.contact-info p {
-  color: white; /* Ensures address text is white */
+  color: white;
 }
 
-.fab {
-  color: white !important; /* Forces FontAwesome icons to be white */
+.footer-section .fab {
+  color: white !important; 
 }

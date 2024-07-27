@@ -1,0 +1,67 @@
+.deals {
+    padding: 20px;
+    background-color: #eadd9c;
+  }
+  
+  .deals h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Adds space between cards */
+    justify-content: center; /* Center the cards in the container */
+  }
+  
+  .deal-card {
+    width: 18rem;
+    margin-bottom: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd; /* Add border to cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow to cards */
+  }
+  
+  .deal-card-img {
+    height: 150px; /* Set a specific height for the images */
+    width: 100%;
+  }
+  
+  .deal-card-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px; /* Add padding to the text section */
+  }
+  
+  .deal-card-price {
+    font-size: 1.25rem;
+    color: #e84d56; /* Add your desired color for the price */
+    margin-bottom: 10px;
+  }
+  
+  .deal-card-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .deal-card-button {
+    background-color: #e84d56;
+    border: none;
+    color: white;
+    width: 105px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: -30px;
+    margin-left: 155px;
+  }
+  
+  .deal-card-button:hover {
+    background-color: #c43d48; /* Change to your desired hover color */
+  }
+  
