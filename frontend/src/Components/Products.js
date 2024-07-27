@@ -1,7 +1,12 @@
+// Components/Products.js
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import '../assets/css/Products.css';
+import { useCart } from './CartContext'; // Import useCart hook
+import { useNavigate } from 'react-router-dom';
+
+// Product images
 import product1 from '../assets/images/product1.jpg';
 import product2 from '../assets/images/product2.jpg';
 import product3 from '../assets/images/product3.jpg';
@@ -23,6 +28,7 @@ import product18 from '../assets/images/product18.jpg';
 import product19 from '../assets/images/product19.jpg';
 import product20 from '../assets/images/product20.jpg';
 
+// Product data
 const products = [
   { id: 1, name: 'Product 1', image: product1, price: '10.00' },
   { id: 2, name: 'Product 2', image: product2, price: '15.50' },
@@ -46,29 +52,54 @@ const products = [
   { id: 20, name: 'Product 20', image: product20, price: '21.00' },
 ];
 
-const Products = () => {
-  return (
-    <div className="products">
-      <h2>Our Products</h2>
-      <div className="product-cards">
-        {products.map((product) => (
-          <Card key={product.id} className="product-card">
-            <div className="product-card-img-container">
-              <Card.Img variant="top" src={product.image} className="product-card-img" />
-            </div>
-            <Card.Body className="product-card-body">
-              <Card.Title className="product-card-title">{product.name}</Card.Title>
-              <Card.Text className="product-card-price">${product.price}</Card.Text>
-              <div className="product-card-buttons">
-                <Button variant="primary" className="add-to-cart-btn">Add to Cart</Button>
-                <Button variant="success" className="buy-now-btn">Buy Now</Button>
+  const Products = () => {
+    const { addToCart } = useCart();
+    const navigate = useNavigate(); // Use navigate for redirection
+  
+    const handleAddToCart = (product) => {
+      addToCart(product);
+      navigate('/add-to-cart'); // Redirect to AddToCart page
+    };
+  
+    const handleBuyNow = (product) => {
+      addToCart(product);
+      navigate('/orderpage'); // Redirect to Orderpage
+    };
+  
+    return (
+      <div className="products">
+        <h2>Our Products</h2>
+        <div className="product-cards">
+          {products.map((product) => (
+            <Card key={product.id} className="product-card">
+              <div className="product-card-img-container">
+                <Card.Img variant="top" src={product.image} className="product-card-img" />
               </div>
-            </Card.Body>
-          </Card>
-        ))}
+              <Card.Body className="product-card-body">
+                <Card.Title className="product-card-title">{product.name}</Card.Title>
+                <Card.Text className="product-card-price">${product.price}</Card.Text>
+                <div className="product-card-buttons">
+                  <Button
+                    variant="primary"
+                    className="add-to-cart-btn"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button
+                    variant="success"
+                    className="buy-now-btn"
+                    onClick={() => handleBuyNow(product)} // Use handleBuyNow for Buy Now button
+                  >
+                    Buy Now
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Products;
+    );
+  };
+  
+  export default Products;

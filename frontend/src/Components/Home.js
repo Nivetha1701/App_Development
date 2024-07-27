@@ -4,6 +4,10 @@ import '../assets/css/Home.css';
 import home1 from '../assets/images/home1.jpg'; 
 import home2 from '../assets/images/home2.jpg'; 
 import home3 from '../assets/images/home3.jpg'; 
+import About from './About';
+import Categories from './Categories';
+import Deals from './Deals';
+import Contact from './Contact';
 
 const images = [home1, home2, home3];
 
@@ -17,7 +21,7 @@ function Home() {
 
     return () => clearInterval(interval);
   }, []);
- 
+
   return (
     <div className="home-container">
       <img
@@ -25,6 +29,12 @@ function Home() {
         alt="Carousel"
         className="home-image"
       />
+      <div className="home-content">
+        <About />
+        <Categories />
+        <Deals />
+        <Contact />
+      </div>
     </div>
   );
 }

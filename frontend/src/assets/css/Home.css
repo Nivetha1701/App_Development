@@ -1,13 +1,30 @@
+
 .home-container {
   position: relative;
+  margin-top: 70px;
   width: 100%;
-  height: 100vh; 
+  height: auto; /* Allow container height to grow with content */
   overflow: hidden; 
 }
 
 .home-image {
   width: 100%;
-  height: 90vh;
-  margin-top: 70px;
+  height: 90vh; /* Adjust as needed */
+  object-fit: cover; /* Ensure image covers the container */
   transition: opacity 1s ease-in-out; 
 }
+
+.home-content {
+  padding: 20px; /* Add some padding around the sections */
+}
+
+section {
+  margin-bottom: 40px; /* Space between sections */
+}
+
+/* Example section styling */
+section h2 {
+  margin-bottom: 20px;
+}
+
+/* Adjust specific section styles if needed */

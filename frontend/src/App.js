@@ -1,5 +1,6 @@
+// App.js
 import React from 'react';
-import {Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Navbar from './Components/Navbar';
@@ -10,35 +11,31 @@ import Contact from './Components/Contact';
 import Categories from './Components/Categories';
 import Deals from './Components/Deals';
 import Products from './Components/Products';
+import AddToCart from './Components/AddToCart'; // Import AddToCart
+import { CartProvider } from './Components/CartContext'; // Import CartProvider
+import Orderpage from './Components/OrderPage';
 
 function App() {
   return (
-    // <Products/>
-    <BrowserRouter>
-      <Navbar /> 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <About/>
-      <Categories/>
-      <Deals/>
-      <Contact/>
-      <Footer/>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Navbar /> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/deals" element={<Deals />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/add-to-cart" element={<AddToCart />} /> 
+          <Route path="/orderpage" element={<Orderpage/>} />
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 
 export default App;
-
-
-
-          // <Route path="/about" element={<About />} />
-          // <Route path="/app-support" element={<AppSupport />} />
-          // <Route path="/login" element={<Login />} />
-          // <Route path="/policies" element={<Policies />} />
-          // <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          // <Route path="/refund-policy" element={<RefundPolicy />} />
-          // <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-          // <Route path="/contact" element={<Contact />} />
