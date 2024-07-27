@@ -9,9 +9,11 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Categories from './Components/Categories';
 import Deals from './Components/Deals';
+import Products from './Components/Products';
 
 function App() {
   return (
+    // <Products/>
     <BrowserRouter>
       <Navbar /> 
       <Routes>
