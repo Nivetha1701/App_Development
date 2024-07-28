@@ -101,3 +101,15 @@ a:hover {
 .hidden {
     display: none;
 }
+
+.login-page p{
+    margin-left: 60px;
+}
+
+.login-page a {
+    color: #272eb6; 
+}
+
+.login-page p a:hover {
+    text-decoration: underline;
+} 

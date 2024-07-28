@@ -36,10 +36,16 @@ function Login() {
     if (isValid) {
       const users = JSON.parse(localStorage.getItem('users')) || [];
       const user = users.find(user => user.email === formData.email && user.password === formData.password);
-      if (user) {
-        dispatch(loginSuccess(user));
+
+      if (user || (formData.email === 'nivethabs2004@gmail.com' && formData.password === 'nivetha2004')) {
+        dispatch(loginSuccess(user || { email: formData.email, password: formData.password }));
         setSuccessMessage("Login successful");
-        setTimeout(() => navigate('/'), 2000); 
+        
+        if (formData.email === 'nivethabs2004@gmail.com' && formData.password === 'nivetha2004') {
+          setTimeout(() => navigate('/admin'), 2000); // Redirect to admin page
+        } else {
+          setTimeout(() => navigate('/'), 2000); // Redirect to home page
+        }
       } else {
         setErrors({ email: "Invalid email or password", password: "" });
       }
