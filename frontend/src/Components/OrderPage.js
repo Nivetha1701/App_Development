@@ -63,7 +63,7 @@ const Orderpage = () => {
               <input type="text" placeholder="Postal / Zip Code" required />
             </div>
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>My Products</label>
             <ul>
               {products.map((product, index) => (
@@ -80,7 +80,7 @@ const Orderpage = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
           <div className="form-group">
             <label>Total: ${calculateTotal()}</label>
           </div>
