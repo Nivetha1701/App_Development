@@ -47,40 +47,42 @@ function Login() {
   };
 
   return (
-    <div className={`login-container ${isFormVisible ? '' : 'hidden'}`}>
-      <div className="close-icon" onClick={() => setFormVisible(false)}>
-        <i className="fas fa-times"></i>
+    <div className={`login-page`}>
+      <div className={`login-container ${isFormVisible ? '' : 'hidden'}`}>
+        <div className="close-icon" onClick={() => setFormVisible(false)}>
+          <i className="fas fa-times"></i>
+        </div>
+        <h2>LOGIN</h2>
+        {successMessage && <div className="success">{successMessage}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <div className="error">{errors.email}</div>}
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            {errors.password && <div className="error">{errors.password}</div>}
+          </div>
+          <button type="submit">Login</button>
+          <p>Not registered yet? <Link to="/register">Sign up</Link></p>
+        </form>
       </div>
-      <h2>LOGIN</h2>
-      {successMessage && <div className="success">{successMessage}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <div className="error">{errors.email}</div>}
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          {errors.password && <div className="error">{errors.password}</div>}
-        </div>
-        <button type="submit">Login</button>
-        <p>Not registered yet? <Link to="/register">Sign up</Link></p>
-      </form>
     </div>
   );
 }

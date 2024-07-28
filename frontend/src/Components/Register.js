@@ -87,76 +87,78 @@ function Register() {
     };
 
     return (
-        <div className={`register-container ${isFormVisible ? '' : 'hidden'}`}>
-            <div className="close-icon" onClick={() => setFormVisible(false)}>
-                <i className="fas fa-times"></i>
+        <div className="register-page">
+            <div className={`register-container ${isFormVisible ? '' : 'hidden'}`}>
+                <div className="close-icon" onClick={() => setFormVisible(false)}>
+                    <i className="fas fa-times"></i>
+                </div>
+                <h2>REGISTER</h2>
+                {successMessage && <div className="success">{successMessage}</div>}
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>First Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your first name"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.firstName && <div className="error">{errors.firstName}</div>}
+                    </div>
+                    <div className="form-group">
+                        <label>Last Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your last name"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.lastName && <div className="error">{errors.lastName}</div>}
+                    </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.email && <div className="error">{errors.email}</div>}
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.password && <div className="error">{errors.password}</div>}
+                    </div>
+                    <div className="form-group">
+                        <label>Mobile Number</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your mobile number"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.mobile && <div className="error">{errors.mobile}</div>}
+                    </div>
+                    <button type="submit">Register</button>
+                    <p>Already registered? <Link to="/login">Login</Link></p>
+                </form>
             </div>
-            <h2>REGISTER</h2>
-            {successMessage && <div className="success">{successMessage}</div>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>First Name</label>
-                    <input
-                        type="text"
-                        placeholder="Enter your first name"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.firstName && <div className="error">{errors.firstName}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Last Name</label>
-                    <input
-                        type="text"
-                        placeholder="Enter your last name"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.lastName && <div className="error">{errors.lastName}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        placeholder="Enter your email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.email && <div className="error">{errors.email}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        placeholder="Enter password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.password && <div className="error">{errors.password}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Mobile Number</label>
-                    <input
-                        type="text"
-                        placeholder="Enter your mobile number"
-                        name="mobile"
-                        value={formData.mobile}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.mobile && <div className="error">{errors.mobile}</div>}
-                </div>
-                <button type="submit">Register</button>
-                <p>Already registered? <Link to="/login">Login</Link></p>
-            </form>
         </div>
     );
 }

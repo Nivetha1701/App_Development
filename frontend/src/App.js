@@ -32,7 +32,6 @@ function App() {
           <Route path="/add-to-cart" element={<AddToCart />} /> 
           <Route path="/orderpage" element={<Orderpage/>} />
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </CartProvider>
   );

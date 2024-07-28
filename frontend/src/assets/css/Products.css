@@ -72,13 +72,15 @@
 }
 
 .add-to-cart-btn {
-    width: 65%; /* Set width to ensure they fit nicely */
+    width: 45%; /* Set width to ensure they fit nicely */
     height: 6vh;
-    margin-right: 30px;
+    font-size: 0.9rem;
+    margin-right: 20px;
 }
 
 .buy-now-btn {
     margin-right: 20px; /* Reduced margin */
-    width: 60%;
+    width: 40%;
+    font-size: 0.9rem;
     height: 6vh;
 }

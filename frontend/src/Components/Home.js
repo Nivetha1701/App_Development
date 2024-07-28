@@ -8,6 +8,7 @@ import About from './About';
 import Categories from './Categories';
 import Deals from './Deals';
 import Contact from './Contact';
+import Footer from './Footer';
 
 const images = [home1, home2, home3];
 
@@ -34,6 +35,7 @@ function Home() {
         <Categories />
         <Deals />
         <Contact />
+        <Footer/>
       </div>
     </div>
   );

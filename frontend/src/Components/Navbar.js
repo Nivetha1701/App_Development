@@ -4,7 +4,6 @@ import '../assets/css/Navbar.css';
 import logo from '../assets/images/logo.png'; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
 function Navbar() {
   const navigate = useNavigate(); 
 
@@ -31,9 +30,9 @@ function Navbar() {
         <input type="text" placeholder="Type here to Search" />
         <i className="fas fa-search search-icon"></i>
       </div>
-      <button onClick={handleLoginClick} className="login-button">
-        Login
-      </button>
+      <div className="user-icon" onClick={handleLoginClick}>
+        <i className="fas fa-user"></i>
+      </div>
     </nav>
   );
 }

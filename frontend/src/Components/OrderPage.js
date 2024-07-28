@@ -33,81 +33,93 @@ const Orderpage = () => {
   }
 
   return (
-    <div className="payment-page">
-      <div className="close-button" onClick={handleClose}>×</div>
-      <h1>Purchase Order</h1>
-      <form>
-        <div className="form-group">
-          <label>Your Name</label>
-          <div className="name-input">
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
+    <div className="order-page">
+      <div className="payment-page">
+        <div className="close-button" onClick={handleClose}>×</div>
+        <h2>Purchase Order</h2>
+        <form>
+          <div className="form-group">
+            <label>Your Name</label>
+            <div className="name-input">
+              <input type="text" placeholder="First Name" required />
+              <input type="text" placeholder="Last Name" />
+            </div>
           </div>
-        </div>
-        <div className="form-group">
-          <label>Your E-mail</label>
-          <input type="email" placeholder="example@example.com" />
-        </div>
-        <div className="form-group">
-          <label>Mobile Number</label>
-          <input type="text" placeholder="Your Mobile Number" />
-        </div>
-        <div className="form-group">
-          <label>Shipping Address</label>
-          <input type="text" placeholder="Street Address" />
-          <input type="text" placeholder="Street Address Line 2" />
-          <div className="address-input">
-            <input type="text" placeholder="City" />
-            <input type="text" placeholder="State / Province" />
-            <input type="text" placeholder="Postal / Zip Code" />
+          <div className="form-group">
+            <label>Your E-mail</label>
+            <input type="email" placeholder="example@example.com" required />
           </div>
-        </div>
-        <div className="form-group">
-          <label>My Products</label>
-          <ul>
-            {products.map((product, index) => (
-              <li key={index}>
-                <input
-                  type="checkbox"
-                  onChange={(e) => handleProductChange(product, e.target.checked)}
-                />
-                <div className="product-details">
-                  <span className="product-name">{product.name}</span>
-                  <span className="product-description">{product.description}</span>
-                  <span className="product-price">${product.price.toFixed(2)}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="form-group">
-          <label>Total: ${calculateTotal()}</label>
-        </div>
-        <div className="form-group">
-          <label>Payment Methods</label>
-          <div className="payment-method">
-            <input
-              type="radio"
-              name="payment-method"
-              value="card"
-              checked={paymentMethod === 'card'}
-              onChange={() => setPaymentMethod('card')}
-            />
-            <label>Debit or Credit Card</label>
+          <div className="form-group">
+            <label>Mobile Number</label>
+            <input type="text" placeholder="Your Mobile Number" required />
           </div>
-          <div className="payment-method">
-            <input
-              type="radio"
-              name="payment-method"
-              value="upi"
-              checked={paymentMethod === 'upi'}
-              onChange={() => setPaymentMethod('upi')}
-            />
-            <label>UPI payment</label>
+          <div className="form-group">
+            <label>Shipping Address</label>
+            <input type="text" placeholder="Street Address" required />
+            <input type="text" placeholder="Street Address Line 2" />
+            <div className="address-input">
+              <input type="text" placeholder="City" />
+              <input type="text" placeholder="State / Province" required />
+              <input type="text" placeholder="Postal / Zip Code" required />
+            </div>
           </div>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+          <div className="form-group">
+            <label>My Products</label>
+            <ul>
+              {products.map((product, index) => (
+                <li key={index}>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handleProductChange(product, e.target.checked)}
+                  />
+                  <div className="product-details">
+                    <span className="product-name">{product.name}</span>
+                    <span className="product-description">{product.description}</span>
+                    <span className="product-price">${product.price.toFixed(2)}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="form-group">
+            <label>Total: ${calculateTotal()}</label>
+          </div>
+          <div className="form-group">
+            <label>Payment Methods</label>
+            <div className="payment-method">
+              <input
+                type="radio"
+                name="payment-method"
+                value="card"
+                checked={paymentMethod === 'card'}
+                onChange={() => setPaymentMethod('card')}
+              />
+              <label>Debit or Credit Card</label>
+            </div>
+            <div className="payment-method">
+              <input
+                type="radio"
+                name="payment-method"
+                value="upi"
+                checked={paymentMethod === 'upi'}
+                onChange={() => setPaymentMethod('upi')}
+              />
+              <label>UPI payment</label>
+            </div>
+            <div className="payment-method">
+              <input
+                type="radio"
+                name="payment-method"
+                value="cash-on-delivery"
+                checked={paymentMethod === 'cash-on-delivery'}
+                onChange={() => setPaymentMethod('cash-on-delivery')}
+              />
+              <label>Cash on Delivery</label>
+            </div>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,23 @@
+.order-page {
+  position: relative; /* Required for ::before positioning */
+  padding: 20px; /* Add some padding to avoid content touching the edges */
+}
+
+.order-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../images/orderimg.jpg'); /* Path to your background image */
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center; /* Center the background image */
+  filter: blur(4px); /* Adjust the blur value as needed */
+  z-index: -1; /* Ensure the blurred image stays behind the content */
+}
+
 .payment-page {
   position: relative;
   width: 100%;
@@ -13,16 +33,16 @@
 .payment-page .close-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 30px;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  color: #34495e; 
+  font-size: 30px;
+  color: #010101; 
 }
 
-.payment-page h1 {
+.payment-page h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 620;
 }
 
 .payment-page .description {
@@ -55,7 +75,7 @@ input[type="text"], input[type="email"] {
   border-radius: 5px;
 }
 
-.payment-page .ul {
+.payment-page ul {
   list-style-type: none;
   padding: 0;
   margin: 0; 
@@ -66,11 +86,8 @@ input[type="text"], input[type="email"] {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  padding: 10px 5px;
+  margin-right: 150px;
 }
 
 li input[type="checkbox"] {
@@ -84,6 +101,7 @@ li input[type="checkbox"] {
   justify-content: center;
   flex: 1;
   padding-left: 30px;
+  margin-left: -80px;
 }
 
 .product-name {

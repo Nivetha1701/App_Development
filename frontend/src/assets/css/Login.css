@@ -1,13 +1,38 @@
+.login-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/loginimg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(4px);
+    z-index: -1; /* Ensure it is behind the content */
+}
+
 .login-container {
     max-width: 350px;
+    width: 400px;
     margin: 150px auto;
     padding: 20px;
     border: 1px solid #858585;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    background-color: #cbc6c6;
+    /* background-color: #f9f9f9; */
     position: relative;
-    margin-top: 200px;
+    z-index: 1; /* Ensure the container is above the background image */
 }
 
 .close-icon {

@@ -1,10 +1,9 @@
-// Components/Products.js
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import '../assets/css/Products.css';
 import { useCart } from './CartContext'; // Import useCart hook
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Product images
 import product1 from '../assets/images/product1.jpg';
@@ -27,79 +26,76 @@ import product17 from '../assets/images/product17.jpg';
 import product18 from '../assets/images/product18.jpg';
 import product19 from '../assets/images/product19.jpg';
 import product20 from '../assets/images/product20.jpg';
+import product21 from '../assets/images/product21.jpg';
+import product22 from '../assets/images/product22.jpg';
+import product23 from '../assets/images/product23.jpg';
+import product24 from '../assets/images/product24.jpg';
 
-// Product data
-const products = [
-  { id: 1, name: 'Product 1', image: product1, price: '10.00' },
-  { id: 2, name: 'Product 2', image: product2, price: '15.50' },
-  { id: 3, name: 'Product 3', image: product3, price: '8.99' },
-  { id: 4, name: 'Product 4', image: product4, price: '12.49' },
-  { id: 5, name: 'Product 5', image: product5, price: '9.75' },
-  { id: 6, name: 'Product 6', image: product6, price: '14.30' },
-  { id: 7, name: 'Product 7', image: product7, price: '18.60' },
-  { id: 8, name: 'Product 8', image: product8, price: '20.00' },
-  { id: 9, name: 'Product 9', image: product9, price: '7.20' },
-  { id: 10, name: 'Product 10', image: product10, price: '25.00' },
-  { id: 11, name: 'Product 11', image: product11, price: '11.50' },
-  { id: 12, name: 'Product 12', image: product12, price: '13.75' },
-  { id: 13, name: 'Product 13', image: product13, price: '22.30' },
-  { id: 14, name: 'Product 14', image: product14, price: '19.99' },
-  { id: 15, name: 'Product 15', image: product15, price: '6.99' },
-  { id: 16, name: 'Product 16', image: product16, price: '30.00' },
-  { id: 17, name: 'Product 17', image: product17, price: '17.45' },
-  { id: 18, name: 'Product 18', image: product18, price: '24.89' },
-  { id: 19, name: 'Product 19', image: product19, price: '5.99' },
-  { id: 20, name: 'Product 20', image: product20, price: '21.00' },
+const allProducts = [
+  { id: 1, name: 'Fresh Fruits', image: product1, price: '10.00', category: 'fruits-vegetables' },
+  { id: 2, name: 'Fresh Vegetables', image: product2, price: '15.50', category: 'fruits-vegetables' },
+  { id: 3, name: 'Cuts and Exotics', image: product3, price: '8.99', category: 'fruits-vegetables' },
+  { id: 4, name: 'Herbs and Seasonings', image: product4, price: '12.49', category: 'fruits-vegetables' },
+  { id: 5, name: 'Carrot', image: product5, price: '9.75', category: 'fruits-vegetables' },
+  { id: 6, name: 'Ladys Finger', image: product6, price: '14.30', category: 'fruits-vegetables' },
+  { id: 7, name: 'Brinjal', image: product7, price: '18.60', category: 'fruits-vegetables' },
+  { id: 8, name: 'Tomato', image: product8, price: '20.00', category: 'fruits-vegetables' },
+  { id: 9, name: 'Atta wheat flour', image: product9, price: '7.20', category: 'staples' },
+  { id: 10, name: 'Rice', image: product10, price: '25.00', category: 'staples' },
+  { id: 11, name: 'Badam dry fruits', image: product11, price: '11.50', category: 'staples' },
+  { id: 12, name: 'Ghee', image: product12, price: '13.75', category: 'staples' },
+  { id: 13, name: '3Roses', image: product13, price: '22.30', category: 'snacks-beverage' },
+  { id: 14, name: 'Maaza', image: product14, price: '19.99', category: 'snacks-beverage' },
+  { id: 15, name: 'Dairy Milk', image: product15, price: '6.99', category: 'snacks-beverage' },
+  { id: 16, name: 'Chocos', image: product16, price: '15.00', category: 'snacks-beverage' },
+  { id: 17, name: 'Pressure cooker', image: product17, price: '35.00', category: 'home-kitchen' },
+  { id: 18, name: 'Container', image: product18, price: '45.00', category: 'home-kitchen' },
+  { id: 19, name: 'Rin liquid', image: product19, price: '10.50', category: 'home-kitchen' },
+  { id: 20, name: 'Water bottle', image: product20, price: '5.75', category: 'home-kitchen' },
+  { id: 21, name: 'Vim dish wash liquid', image: product21, price: '35.00', category: 'cleaning-household' },
+  { id: 22, name: 'Surf excel powder', image: product22, price: '45.00', category: 'cleaning-household' },
+  { id: 23, name: 'Buckets', image: product23, price: '10.50', category: 'cleaning-household' },
+  { id: 24, name: 'Freshener', image: product24, price: '5.75', category: 'cleaning-household' },
 ];
 
-  const Products = () => {
-    const { addToCart } = useCart();
-    const navigate = useNavigate(); // Use navigate for redirection
-  
-    const handleAddToCart = (product) => {
-      addToCart(product);
-      navigate('/add-to-cart'); // Redirect to AddToCart page
-    };
-  
-    const handleBuyNow = (product) => {
-      addToCart(product);
-      navigate('/orderpage'); // Redirect to Orderpage
-    };
-  
-    return (
-      <div className="products">
-        <h2>Our Products</h2>
-        <div className="product-cards">
-          {products.map((product) => (
-            <Card key={product.id} className="product-card">
-              <div className="product-card-img-container">
-                <Card.Img variant="top" src={product.image} className="product-card-img" />
-              </div>
-              <Card.Body className="product-card-body">
-                <Card.Title className="product-card-title">{product.name}</Card.Title>
-                <Card.Text className="product-card-price">${product.price}</Card.Text>
-                <div className="product-card-buttons">
-                  <Button
-                    variant="primary"
-                    className="add-to-cart-btn"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Add to Cart
-                  </Button>
-                  <Button
-                    variant="success"
-                    className="buy-now-btn"
-                    onClick={() => handleBuyNow(product)} // Use handleBuyNow for Buy Now button
-                  >
-                    Buy Now
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
-      </div>
-    );
+const Products = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+
+  const category = state ? state.category : 'all';
+  const products = category === 'all' ? allProducts : allProducts.filter(product => product.category === category);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate('/add-to-cart'); // Redirect to AddToCart page
   };
-  
-  export default Products;
+
+  const handleBuyNow = (product) => {
+    addToCart(product);
+    navigate('/orderpage'); // Redirect to Orderpage
+  };
+
+  return (
+    <div className="products">
+      <h2>Products</h2>
+      <div className="product-cards">
+        {products.map((product) => (
+          <Card key={product.id} className="product-card">
+            <Card.Img variant="top" src={product.image} className="product-card-img" />
+            <Card.Body className="product-card-body">
+              <Card.Title className="product-card-title">{product.name}</Card.Title>
+              <Card.Text className="product-card-price">${product.price}</Card.Text>
+              <div className="product-card-buttons">
+                <Button className="add-to-cart-btn" variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+                <Button className="buy-now-btn" variant="success" onClick={() => handleBuyNow(product)}>Buy Now</Button>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Products;

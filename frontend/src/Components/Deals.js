@@ -25,7 +25,7 @@ const Deals = () => {
             <Card.Body className="deal-card-body">
               <Card.Text className="deal-card-price">{deal.price}</Card.Text>
               <Card.Title className="deal-card-title">{deal.title}</Card.Title>
-              <Button variant="primary" className="deal-card-button">Add to Cart</Button>
+              {/* <Button variant="primary" className="deal-card-button">Add to Cart</Button> */}
             </Card.Body>
           </Card>
         ))}
