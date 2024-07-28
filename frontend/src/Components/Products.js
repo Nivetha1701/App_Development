@@ -32,10 +32,10 @@ import product23 from '../assets/images/product23.jpg';
 import product24 from '../assets/images/product24.jpg';
 
 const allProducts = [
-  { id: 1, name: 'Fresh Fruits', image: product1, price: '10.00', category: 'fruits-vegetables' },
-  { id: 2, name: 'Fresh Vegetables', image: product2, price: '15.50', category: 'fruits-vegetables' },
-  { id: 3, name: 'Cuts and Exotics', image: product3, price: '8.99', category: 'fruits-vegetables' },
-  { id: 4, name: 'Herbs and Seasonings', image: product4, price: '12.49', category: 'fruits-vegetables' },
+  { id: 1, name: 'Orange', image: product1, price: '10.00', category: 'fruits-vegetables' },
+  { id: 2, name: 'Apple', image: product2, price: '15.50', category: 'fruits-vegetables' },
+  { id: 3, name: 'Pomegranate', image: product3, price: '8.99', category: 'fruits-vegetables' },
+  { id: 4, name: 'Mango', image: product4, price: '12.49', category: 'fruits-vegetables' },
   { id: 5, name: 'Carrot', image: product5, price: '9.75', category: 'fruits-vegetables' },
   { id: 6, name: 'Ladys Finger', image: product6, price: '14.30', category: 'fruits-vegetables' },
   { id: 7, name: 'Brinjal', image: product7, price: '18.60', category: 'fruits-vegetables' },
