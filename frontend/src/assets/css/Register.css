@@ -89,9 +89,14 @@ button:hover {
     font-size: 14px;
 }
 
-a {
-    color: #4CAF50;
+.register-page a {
+    color: #3c3eac;
     text-decoration: none;
+    margin-left: 5px;
+}
+
+.register-page p{
+    margin-left: 70px;
 }
 
 a:hover {

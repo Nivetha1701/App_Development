@@ -13,6 +13,7 @@ import Orderpage from './Components/OrderPage';
 import Admin from './Components/Admin';
 import Layout from './Components/Layout'; // Import Layout
 import { CartProvider } from './Components/CartContext';
+import User from './Components/User';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="orderpage" element={<Orderpage />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

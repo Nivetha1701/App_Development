@@ -239,7 +239,7 @@ body {
 .user-dropdown {
     position: absolute;
     top: 50px; /* Adjust this value to place the dropdown below the header */
-    height: 150px;
+    height: 200px;
     right: 10px;
     background: white;
     border: 1px solid #ddd;
@@ -270,4 +270,21 @@ body {
 .user-email {
     margin-bottom: 70px; /* Reduced margin-bottom */
     color: #666;
+}
+
+.user-dropdown .logout-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: -50px;
+}
+
+.user-dropdown .logout-button:hover {
+    background-color: #c0392b;
 }

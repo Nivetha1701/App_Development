@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../assets/css/Admin.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import adminImage from '../assets/images/admin.png';
@@ -11,6 +12,7 @@ import kiwi from '../assets/images/kiwi.jpg';
 function Admin() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -18,6 +20,11 @@ function Admin() {
 
   const toggleUserDropdown = () => {
     setUserDropdownOpen(!isUserDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    // Clear any user-related data (if applicable)
+    navigate('/'); // Redirect to the home page
   };
 
   return (
@@ -40,6 +47,7 @@ function Admin() {
                 <img src={adminImage} alt="User Avatar" className="admin-avatar" />
                 <p className="user-name">Nivetha</p>
                 <p className="user-email">nivethabs2004@gmail.com</p>
+                <button onClick={handleLogout} className="logout-button">Logout</button> {/* Add Logout button */}
               </div>
             </div>
           )}

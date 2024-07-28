@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Navbar.css';
 import logo from '../assets/images/logo.png'; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar() {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate(); 
 
   const handleLoginClick = () => {
     navigate('/login'); 
+  };
+
+  const handleUserIconClick = () => {
+    setDropdownVisible(!dropdownVisible);
   };
 
   return (
@@ -30,8 +35,15 @@ function Navbar() {
         <input type="text" placeholder="Type here to Search" />
         <i className="fas fa-search search-icon"></i>
       </div>
-      <div className="user-icon" onClick={handleLoginClick}>
+      <div className="user-icon" onClick={handleUserIconClick}>
         <i className="fas fa-user"></i>
+        {dropdownVisible && (
+          <div className="dropdown-menu">
+            <Link to="/login">Login</Link>
+            <Link to="/register">Signup</Link>
+            <Link to="/user">My Account</Link>
+          </div>
+        )}
       </div>
     </nav>
   );

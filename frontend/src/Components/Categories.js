@@ -101,6 +101,7 @@ const Categories = () => {
 
   return (
     <div className="categories">
+      <h1>Categories</h1>
       {categories.map((category, index) => (
         <div key={index} className="category-section">
           <h2>{category.header}</h2>

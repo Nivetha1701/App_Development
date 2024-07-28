@@ -1,10 +1,14 @@
 .categories {
     padding: 20px;
-    margin-top: 30px;
+    margin-top: 40px;
   }
   
   .category-section {
     margin-bottom: 35px;
+  }
+
+  .categories h1{
+    text-align: center;
   }
   
   .category-section h2 {

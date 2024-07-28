@@ -119,4 +119,36 @@
   font-size: 1.7rem;
   margin-right: 50px;
   color: white;
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #34495e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  flex-direction: column;
+  width: 130px; /* Adjust this value to increase the width */
+}
+
+.user-icon:hover .dropdown-menu,
+.user-icon:focus .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #e84d56;
 }
