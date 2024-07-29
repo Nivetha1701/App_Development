@@ -18,7 +18,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     filter: blur(4px);
-    z-index: -1; /* Ensure it is behind the content */
+    z-index: -1;
 }
 
 .login-container {
@@ -30,9 +30,8 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #cbc6c6;
-    /* background-color: #f9f9f9; */
     position: relative;
-    z-index: 1; /* Ensure the container is above the background image */
+    z-index: 1;
 }
 
 .close-icon {
@@ -102,14 +101,27 @@ a:hover {
     display: none;
 }
 
-.login-page p{
+.forgot-password-link {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: -10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.login-page p {
     margin-left: 60px;
 }
 
 .login-page a {
-    color: #272eb6; 
+    color: #272eb6;
 }
 
 .login-page p a:hover {
     text-decoration: underline;
-} 
+}
