@@ -31,7 +31,7 @@ function Admin() {
     <div className="admin-dashboard">
       <header className="main-header">
         <i className="fas fa-bars menu-icon" onClick={toggleSidebar}></i>
-        <h1>Hey There, Welcome back <span>🎉</span></h1>
+        <h1>Admin Dashboard</h1>
         <div className="header-right">
           <select>
             <option>Last 30 days</option>

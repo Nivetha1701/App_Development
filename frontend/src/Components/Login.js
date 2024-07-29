@@ -85,6 +85,7 @@ function Login() {
             />
             {errors.password && <div className="error">{errors.password}</div>}
           </div>
+          <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
           <button type="submit">Login</button>
           <p>Not registered yet? <Link to="/register">Sign up</Link></p>
         </form>

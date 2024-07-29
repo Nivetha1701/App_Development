@@ -27,7 +27,7 @@ const User = () => {
     <div className="user-dashboard">
       <header className="main-header">
         <i className="fas fa-bars menu-icon" onClick={toggleSidebar}></i>
-        <h1>Welcome, User <span>🎉</span></h1>
+        {/* <h1>Welcome, User <span>🎉</span></h1> */}
         <div className="header-right">
           <input type="text" placeholder="Search" />
           <i className="fas fa-bell"></i>
