@@ -16,6 +16,14 @@ public class Feedback {
     private String message;
     private String email;
 
+    public Feedback(int id, String username, int rating, String message, String email) {
+        this.id = id;
+        this.username = username;
+        this.rating = rating;
+        this.message = message;
+        this.email = email;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../assets/css/Orderpage.css';
 
 const products = [
@@ -11,6 +12,7 @@ const Orderpage = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showForm, setShowForm] = useState(true);
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleProductChange = (product, checked) => {
     if (checked) {
@@ -28,6 +30,12 @@ const Orderpage = () => {
     setShowForm(false);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform any order validation or API calls here
+    navigate('/payment'); // Redirect to Payment page
+  };
+
   if (!showForm) {
     return null;
   }
@@ -37,7 +45,7 @@ const Orderpage = () => {
       <div className="payment-page">
         <div className="close-button" onClick={handleClose}>×</div>
         <h2>Purchase Order</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Your Name</label>
             <div className="name-input">
@@ -63,24 +71,7 @@ const Orderpage = () => {
               <input type="text" placeholder="Postal / Zip Code" required />
             </div>
           </div>
-          {/* <div className="form-group">
-            <label>My Products</label>
-            <ul>
-              {products.map((product, index) => (
-                <li key={index}>
-                  <input
-                    type="checkbox"
-                    onChange={(e) => handleProductChange(product, e.target.checked)}
-                  />
-                  <div className="product-details">
-                    <span className="product-name">{product.name}</span>
-                    <span className="product-description">{product.description}</span>
-                    <span className="product-price">${product.price.toFixed(2)}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div> */}
+          
           <div className="form-group">
             <label>Total: ${calculateTotal()}</label>
           </div>

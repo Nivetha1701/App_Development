@@ -14,6 +14,7 @@ import Admin from './Components/Admin';
 import Layout from './Components/Layout'; // Import Layout
 import { CartProvider } from './Components/CartContext';
 import User from './Components/User';
+import Payment from './Components/Payment';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="add-to-cart" element={<AddToCart />} />
             <Route path="orderpage" element={<Orderpage />} />
+            <Route path="payment" element={<Payment/>} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           <Route path="/user" element={<User />} />
