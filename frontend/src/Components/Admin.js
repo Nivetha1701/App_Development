@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/Admin.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import adminImage from '../assets/images/admin.png';
-import incomeImage from '../assets/images/income.png'; 
-import earningsImage from '../assets/images/earning.png'; 
-import cabbage from '../assets/images/cabbage.jpg';
-import cooker from '../assets/images/cooker.jpg';
-import kiwi from '../assets/images/kiwi.jpg';
+import incomeImage from '../assets/images/income.png';
+import earningsImage from '../assets/images/earning.png';
 
 function Admin() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [activeSection, setActiveSection] = useState('dashboard');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -23,31 +23,136 @@ function Admin() {
   };
 
   const handleLogout = () => {
-    // Clear any user-related data (if applicable)
-    navigate('/'); // Redirect to the home page
+    navigate('/');
+  };
+
+  const filterOrders = (rows) => {
+    return rows.filter(row => {
+      const rowDate = new Date(row.date);
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      return (!startDate || rowDate >= start) && (!endDate || rowDate <= end);
+    });
+  };
+
+  const renderSection = () => {
+    const orders = [
+      { id: '#2632', name: 'Brooklyn Zoe', address: '302 Snider Street, RUTLAND, VT, 05701', date: '2020-07-31', price: '$64.00', status: 'Pending' },
+      { id: '#2633', name: 'John McCormick', address: '1096 Wiseman Street, CALMAR, IA, 52132', date: '2020-08-01', price: '$35.00', status: 'Dispatch' },
+      { id: '#2634', name: 'Sandra Pugh', address: '1640 Thom Street, SALE CITY, GA, 98105', date: '2020-08-02', price: '$74.00', status: 'Completed' },
+      { id: '#2635', name: 'Vernie Hart', address: '3898 Oak Drive, DOVER, DE, 19905', date: '2020-08-02', price: '$62.00', status: 'Pending' },
+      { id: '#2636', name: 'Mark Clark', address: '195 Augusta Park, NASSAU, NY, 12062', date: '2020-08-02', price: '$39.00', status: 'Dispatch' },
+      { id: '#2637', name: 'Rebekah Foster', address: '3445 Park Boulevard, BOCA, CA, 93065', date: '2020-08-03', price: '$67.00', status: 'Pending' },
+    ];
+
+    const filteredOrders = filterOrders(orders);
+
+    switch (activeSection) {
+      case 'dashboard':
+        return (
+          <>
+            <section className="stats-section">
+              <div className="stat-card pending-orders">
+                <h3>New Users</h3>
+                <p>20</p>
+              </div>
+              <div className="stat-card active-orders">
+                <h3>Total orders</h3>
+                <p>530</p>
+              </div>
+              <div className="stat-card delivered-orders">
+                <h3>Delivered orders</h3>
+                <p>275</p>
+              </div>
+            </section>
+            <section className="income-section">
+              <div className="income-chart">
+                <h3>Income</h3>
+                <img src={incomeImage} alt="Income Chart" />
+              </div>
+              <div className="earnings-item">
+                <h3>Earnings by Item</h3>
+                <img src={earningsImage} alt="Earnings by Item Chart" />
+              </div>
+            </section>
+          </>
+        );
+      case 'users':
+        return (
+          <section className="users-section">
+            <h3>User Details</h3>
+          </section>
+        );
+      case 'orders':
+        return (
+          <section className="orders-section">
+            <h3>Orders</h3>
+            <div className="orders-filters">
+              <button className="filter-button active" onClick={() => setActiveSection('orders')}>All orders</button>
+              <button className="filter-button dispatch" onClick={() => setActiveSection('dispatch')}>Dispatch</button>
+              <button className="filter-button pending" onClick={() => setActiveSection('pending')}>Pending</button>
+              <button className="filter-button completed" onClick={() => setActiveSection('completed')}>Completed</button>
+              {/* <div className="date-filter">
+                <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                <span>to</span>
+                <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+              </div> */}
+            </div>
+            <table className="orders-table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Date</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>{order.id}</td>
+                    <td>{order.name}</td>
+                    <td>{order.address}</td>
+                    <td>{order.date}</td>
+                    <td>{order.price}</td>
+                    <td className={`status ${order.status.toLowerCase()}`}>{order.status}</td>
+                    <td><i className="fas fa-cog"></i></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        );
+      case 'messages':
+        return (
+          <section className="messages-section">
+            <h3>User Feedback</h3>
+          </section>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
     <div className="admin-dashboard">
       <header className="main-header">
         <i className="fas fa-bars menu-icon" onClick={toggleSidebar}></i>
-        <h1>Admin Dashboard</h1>
         <div className="header-right">
-          <select>
-            <option>Last 30 days</option>
-            <option>Last 60 days</option>
-            <option>Last 90 days</option>
-          </select>
           <input type="text" placeholder="Search" />
-          <i className="fas fa-bell"></i>
           <i className="fas fa-user-circle" onClick={toggleUserDropdown}></i>
           {isUserDropdownOpen && (
             <div className="user-dropdown">
               <div className="user-info">
                 <img src={adminImage} alt="User Avatar" className="admin-avatar" />
-                <p className="user-name">Nivetha</p>
-                <p className="user-email">nivethabs2004@gmail.com</p>
-                <button onClick={handleLogout} className="logout-button">Logout</button> {/* Add Logout button */}
+                <div>
+                  <p className="user-name">Nivetha</p>
+                  <p className="user-email">nivethabs2004@gmail.com</p>
+                </div>
+                <button onClick={handleLogout} className="logout-button">Logout</button>
               </div>
             </div>
           )}
@@ -60,96 +165,27 @@ function Admin() {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li className="active"><i className="fas fa-tachometer-alt"></i> Dashboard</li>
-            <li><i className="fas fa-th-list"></i> Categories</li>
-            <li><i className="fas fa-users"></i> Users</li>
-            <li><i className="fas fa-box"></i> Orders</li>
-            <li><i className="fas fa-envelope"></i> Messages</li>
-            <li><i className="fas fa-cog"></i> Settings</li>
+            <li className={activeSection === 'dashboard' ? 'active' : ''} onClick={() => setActiveSection('dashboard')}>
+              <i className="fas fa-tachometer-alt"></i> Dashboard
+            </li>
+            <li className={activeSection === 'users' ? 'active' : ''} onClick={() => setActiveSection('users')}>
+              <i className="fas fa-users"></i> Users
+            </li>
+            <li className={activeSection === 'orders' ? 'active' : ''} onClick={() => setActiveSection('orders')}>
+              <i className="fas fa-box"></i> Orders
+            </li>
+            <li className={activeSection === 'messages' ? 'active' : ''} onClick={() => setActiveSection('messages')}>
+              <i className="fas fa-envelope"></i> Messages
+            </li>
+            <li onClick={handleLogout}>
+              <i className="fas fa-sign-out-alt"></i> Logout
+            </li>
           </ul>
         </nav>
-        <div className="sidebar-footer">
-          <div className="user-info">
-            <img src={adminImage} alt="User Avatar" className="admin-avatar" />
-            <p>Nivetha</p>
-            <p>nivethabs2004@gmail.com</p>
-          </div>
-        </div>
       </aside>
 
       <main className="main-content">
-        <section className="stats-section">
-          <div className="stat-card pending-orders">
-            <h3>Pending Orders</h3>
-            <p>20</p>
-          </div>
-          <div className="stat-card active-orders">
-            <h3>Active Orders</h3>
-            <p>530</p>
-          </div>
-          <div className="stat-card delivered-orders">
-            <h3>Delivered Orders</h3>
-            <p>875</p>
-          </div>
-        </section>
-        <section className="income-section">
-          <div className="income-chart">
-            <h3>Income</h3>
-            <img src={incomeImage} alt="Income Chart" />
-          </div>
-          <div className="earnings-item">
-            <h3>Earnings by Item</h3>
-            <img src={earningsImage} alt="Earnings by Item Chart" />
-          </div>
-        </section>
-        <section className="product-list">
-          <h3>Product List</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Rating</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div className="product-info">
-                    <p>Cabbage</p>
-                    <img src={cabbage} alt="Cabbage" />
-                  </div>
-                </td>
-                <td>30 in stock</td>
-                <td>$32.00</td>
-                <td>4.8 (45 votes)</td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="product-info">
-                    <p>Cooker</p>
-                    <img src={cooker} alt="Cooker" />
-                  </div>
-                </td>
-                <td>56 in stock</td>
-                <td>$32.00</td>
-                <td>4.8 (45 votes)</td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="product-info">
-                    <p>Kiwi</p>
-                    <img src={kiwi} alt="Kiwi" />
-                  </div>
-                </td>
-                <td>72 in stock</td>
-                <td>$32.00</td>
-                <td>4.8 (45 votes)</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        {renderSection()}
       </main>
     </div>
   );

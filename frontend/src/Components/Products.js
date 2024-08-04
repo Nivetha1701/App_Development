@@ -73,7 +73,7 @@ const Products = () => {
 
   const handleBuyNow = (product) => {
     addToCart(product);
-    navigate('/orderpage'); // Redirect to Orderpage
+    navigate('/orderpage', { state: { totalPrice: product.price } }); // Pass totalPrice
   };
 
   return (
@@ -85,7 +85,7 @@ const Products = () => {
             <Card.Img variant="top" src={product.image} className="product-card-img" />
             <Card.Body className="product-card-body">
               <Card.Title className="product-card-title">{product.name}</Card.Title>
-              <Card.Text className="product-card-price">${product.price}</Card.Text>
+              <Card.Text className="product-card-price">₹{product.price}</Card.Text>
               <div className="product-card-buttons">
                 <Button className="add-to-cart-btn" variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
                 <Button className="buy-now-btn" variant="success" onClick={() => handleBuyNow(product)}>Buy Now</Button>

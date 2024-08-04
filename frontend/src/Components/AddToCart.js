@@ -11,7 +11,7 @@ const AddToCart = () => {
   const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price), 0);
 
   const handleBuyNow = () => {
-    navigate('/orderpage'); // Redirect to Orderpage
+    navigate('/orderpage', { state: { totalPrice } }); // Pass totalPrice to Orderpage
   };
 
   return (

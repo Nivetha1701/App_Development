@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import qrcode from '../assets/images/qrcode.jpg';
 import '../assets/css/Payment.css';
+import Feedback from './Feedback'; // Import Feedback component
 
 const Payment = () => {
     const [paymentMethod, setPaymentMethod] = useState('card');
+    const [showFeedback, setShowFeedback] = useState(false); // State to control feedback form display
     const navigate = useNavigate();
 
     const handlePaymentMethodChange = (event) => {
@@ -14,8 +17,12 @@ const Payment = () => {
         event.preventDefault();
         // Show a browser alert
         window.alert('Payment Successful!');
-        navigate('/'); // Redirect to home page
+        setShowFeedback(true); // Show feedback form
     };
+
+    if (showFeedback) {
+        return <Feedback />; // Render Feedback form if payment is successful
+    }
 
     return (
         <div className="payment-form">
@@ -29,16 +36,16 @@ const Payment = () => {
                             checked={paymentMethod === 'card'}
                             onChange={handlePaymentMethodChange}
                         />
-                        <span className="icon">&#128179;</span> Debit Card
+                        <span className="icon">&#128179;</span> Debit/Credit Card
                     </label>
                     <label>
                         <input
                             type="radio"
-                            value="credit"
-                            checked={paymentMethod === 'credit'}
+                            value="upi"
+                            checked={paymentMethod === 'upi'}
                             onChange={handlePaymentMethodChange}
                         />
-                        <span className="icon">&#128179;</span> Credit Card
+                        <span className="icon">&#128179;</span> UPI
                     </label>
                 </div>
 
@@ -63,6 +70,23 @@ const Payment = () => {
                                 placeholder="MM/YYYY"
                                 pattern="\d{2}/\d{4}"
                                 required
+                            />
+                        </div>
+                    </div>
+                )}
+
+                {paymentMethod === 'upi' && (
+                    <div className="upi-details">
+                        <div className="input-group">
+                            <label>UPI ID</label>
+                            <input type="text" placeholder="Enter your UPI ID" required />
+                        </div>
+                        <div className="scan-qr">
+                            <p>or scan with this qr code</p>
+                            <img
+                                src={qrcode} // Replace with the actual path to your QR code image
+                                alt="Scan with QR Code"
+                                className="qr-image"
                             />
                         </div>
                     </div>

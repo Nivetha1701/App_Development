@@ -27,6 +27,7 @@
   
   .category-card {
     width: 18rem;
+    cursor: pointer;
     background-color: #ddd;
     display: flex;
     flex-direction: column;

@@ -13,14 +13,14 @@ import deal8 from '../assets/images/deal8.jpg';
 
 const Deals = () => {
   const deals = [
-    { image: deal1, title: 'Eyeliner', price: '$10.00' },
-    { image: deal2, title: 'Perfumes', price: '$20.00' },
-    { image: deal3, title: 'Face Cream', price: '$30.00' },
-    { image: deal4, title: 'Face wash', price: '$40.00' },
-    { image: deal5, title: 'Slipper', price: '$70.00' },
-    { image: deal6, title: 'Sunscreen', price: '$40.00' },
-    { image: deal7, title: 'Moisturizer', price: '$40.00' },
-    { image: deal8, title: 'Herbal hair oil', price: '$45.00' },
+    { image: deal1, title: 'Eyeliner', price: '₹10.00' },
+    { image: deal2, title: 'Perfumes', price: '₹20.00' },
+    { image: deal3, title: 'Face Cream', price: '₹30.00' },
+    { image: deal4, title: 'Face wash', price: '₹40.00' },
+    { image: deal5, title: 'Slipper', price: '₹70.00' },
+    { image: deal6, title: 'Sunscreen', price: '₹40.00' },
+    { image: deal7, title: 'Moisturizer', price: '₹40.00' },
+    { image: deal8, title: 'Herbal hair oil', price: '₹45.00' },
   ];
 
   return (
