@@ -80,7 +80,16 @@ function Admin() {
       case 'users':
         return (
           <section className="users-section">
-            <h3>User Details</h3>
+            <div className="user-stat-box">
+              <div className="user-stat-card">
+                <h3>Active Users</h3>
+                <p>378</p>
+              </div>
+              <div className="user-stat-card">
+                <h3>New Users</h3>
+                <p>120</p>
+              </div>
+            </div>
           </section>
         );
       case 'orders':
@@ -89,9 +98,9 @@ function Admin() {
             <h3>Orders</h3>
             <div className="orders-filters">
               <button className="filter-button active" onClick={() => setActiveSection('orders')}>All orders</button>
-              <button className="filter-button dispatch" onClick={() => setActiveSection('dispatch')}>Dispatch</button>
-              <button className="filter-button pending" onClick={() => setActiveSection('pending')}>Pending</button>
-              <button className="filter-button completed" onClick={() => setActiveSection('completed')}>Completed</button>
+              <button className="filter-button" onClick={() => setActiveSection('dispatch')}>Dispatch</button>
+              <button className="filter-button" onClick={() => setActiveSection('pending')}>Pending</button>
+              <button className="filter-button" onClick={() => setActiveSection('completed')}>Completed</button>
               {/* <div className="date-filter">
                 <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                 <span>to</span>
@@ -126,12 +135,34 @@ function Admin() {
             </table>
           </section>
         );
-      case 'messages':
-        return (
-          <section className="messages-section">
-            <h3>User Feedback</h3>
-          </section>
-        );
+        case 'messages':
+          return (
+            <section className="messages-section">
+              <h3>User Feedback</h3>
+              <div className="reviews">
+                <div className="review">
+                  <p>"This is a wonderful easy to use, VERY EASY to use service, both for your client as well as staff. I h..."</p>
+                  <p><strong>Angled North</strong></p>
+                </div>
+                <div className="review">
+                  <p>"We have been using Repuso for the past 8 months and it was absolutely brilliant, the team is s..."</p>
+                  <p><strong>Seb Marouani</strong></p>
+                </div>
+                <div className="review">
+                  <p>"Use in your site what other say about your company en #socialmedia... check @getrepu..."</p>
+                  <p><strong>Germán Castaño</strong></p>
+                </div>
+                <div className="review">
+                  <p>"Exactly what I was looking for our e-commerce sites. Easy to set up and simple to use. Extra credits t..."</p>
+                  <p><strong>Ivar Arulaid</strong></p>
+                </div>
+                <div className="review">
+                  <p>"What's more important than showing current customers and (more importantly) potential cust..."</p>
+                  <p><strong>Greg Watson</strong></p>
+                </div>
+              </div>
+            </section>
+          );
       default:
         return null;
     }
