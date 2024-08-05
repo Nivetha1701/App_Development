@@ -1,0 +1,86 @@
+.products {
+    padding: 20px;
+    background-color: #ddd;
+    margin-top: 50px;
+}
+
+.products h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; 
+    justify-content: center;
+}
+
+.product-card {
+    width: 19rem;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    display: flex;
+    height: 52vh;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Move card up on hover */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2); /* Add box shadow on hover */
+}
+
+.product-card-img {
+    height: 200px; /* Set a specific height for the images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.product-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between; /* Ensure space between items */
+    text-align: left; /* Align text to the left */
+    padding: 10px;
+    background-color: rgb(209, 220, 229);
+    border-radius: 1px;
+    box-shadow: 0 8px 16px rgba(52, 73, 94, 0.6);
+
+}
+
+.product-card-title {
+    font-size: 1.25rem;
+    margin: 5px 0; /* Reduced margin */
+}
+
+.product-card-price {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 5px 0; /* Reduced margin */
+}
+
+.product-card-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px; /* Reduced padding around buttons */
+}
+
+.add-to-cart-btn {
+    width: 45%; /* Set width to ensure they fit nicely */
+    height: 6vh;
+    font-size: 0.9rem;
+    margin-right: 20px;
+}
+
+.buy-now-btn {
+    margin-right: 20px; /* Reduced margin */
+    width: 40%;
+    font-size: 0.9rem;
+    height: 6vh;
+}

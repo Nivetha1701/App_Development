@@ -1,0 +1,118 @@
+.feedback-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 85px;
+  }
+  
+  .feedback-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/orderimg.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+    filter: blur(4px); /* Adjust the blur value as needed */
+    z-index: -1; /* Ensure the blurred image stays behind the content */
+  }
+  
+
+  .feedback-form h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feedback-form .form-group input[type="email"],
+  .form-group textarea {
+    width: 90%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .feedback-form .rating-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .feedback-form .rating-group label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .feedback-form .rating-group input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+  
+  .feedback-form textarea {
+    height: 100px;
+  }
+  
+  .feedback-form button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .feedback-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .feedback-form .emoji-group {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+  }
+  
+  .feedback-form .emoji {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+  }
+  
+  .feedback-form .emoji:hover {
+    transform: scale(1.2);
+  }
+  
+  .feedback-form .emoji.selected {
+    border: 2px solid #007bff; /* Highlight selected emoji */
+    border-radius: 50%;
+    padding: 5px;
+    transform: scale(1.3);
+  }
+  
+  .feedback-form .rating-group {
+    margin-top: 10px;
+  }
+  
+  .feedback-form .rating-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .feedback-form .rating-group input[type="radio"] {
+    margin-right: 5px;
+  }
+  
