@@ -21,7 +21,7 @@ public class AddToCartController {
         return addToCartService.createItem(item);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<AddToCart> getAllItems() {
         return addToCartService.getAllItems();
     }

@@ -1,12 +1,8 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -21,16 +17,18 @@ public class Order {
     private String mobile;
 
     @ManyToOne
+    @JoinColumn(name = "user_id") 
+    // @JsonIgnore
     private User user;  
 
     @OneToOne(mappedBy = "order")
+    @JsonIgnore
     private Payment payment;  
 
     public Order() {
     }
 
-    public Order(Integer id, String name, String email, String mobile, String address, User user, Payment payment) {
-        this.id = id;
+    public Order(String name, String email, String mobile, String address, User user, Payment payment) {
         this.name = name;
         this.email = email;
         this.mobile = mobile;

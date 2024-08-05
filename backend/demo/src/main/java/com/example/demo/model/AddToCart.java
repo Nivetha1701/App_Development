@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -8,25 +10,32 @@ public class AddToCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id") // JoinColumn to specify the foreign key
+    @JsonIgnore
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id") // JoinColumn to specify the foreign key
+    @JsonIgnore
+    private User user;
+
+    private String productName;
     private double price;
     private double totalPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-
-    // Default Constructor
+    // Default constructor
     public AddToCart() {
     }
 
-    // Constructor with fields
-    public AddToCart(String name, double price, double totalPrice, Product product) {
-        this.name = name;
+    // Parameterized constructor
+    public AddToCart(Product product, User user, String productName, double price, double totalPrice) {
+        this.product = product;
+        this.user = user;
+        this.productName = productName;
         this.price = price;
         this.totalPrice = totalPrice;
-        this.product = product;
     }
 
     // Getters and Setters
@@ -38,12 +47,28 @@ public class AddToCart {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public double getPrice() {
@@ -60,13 +85,5 @@ public class AddToCart {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }

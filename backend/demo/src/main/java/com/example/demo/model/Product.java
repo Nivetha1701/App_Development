@@ -3,6 +3,8 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Product {
 
@@ -15,9 +17,12 @@ public class Product {
     private double price;
 
     @ManyToOne
+    @JoinColumn(name = "user_id") // JoinColumn to specify the foreign key
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<AddToCart> cartItems;
 
     // Default constructor
@@ -25,8 +30,7 @@ public class Product {
     }
 
     // Parameterized constructor
-    public Product(int productId, String productName, double rating, double price, User user) {
-        this.productId = productId;
+    public Product(String productName, double rating, double price, User user) {
         this.productName = productName;
         this.rating = rating;
         this.price = price;

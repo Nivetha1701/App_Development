@@ -1,10 +1,8 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Payment {
@@ -18,7 +16,9 @@ public class Payment {
     private String expirationDate;
 
     @OneToOne
-    private Order order;  // Relationship with Order
+    @JoinColumn(name = "order_id") // JoinColumn to specify the foreign key
+    @JsonIgnore
+    private Order order;
 
     // Default constructor
     public Payment() {

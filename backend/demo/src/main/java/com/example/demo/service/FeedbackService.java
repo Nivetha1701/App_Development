@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Feedback;
+import com.example.demo.model.User;
 import com.example.demo.repository.FeedbackRepository;
+import com.example.demo.repository.UserRepository; // Add this import for UserRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class FeedbackService {
 
     @Autowired
     private FeedbackRepository feedbackRepository;
+
+    @Autowired
+    private UserRepository userRepository; // Add this for user lookups
 
     public List<Feedback> getAllFeedbacks() {
         return feedbackRepository.findAll();
@@ -32,10 +37,16 @@ public class FeedbackService {
 
     public Feedback updateFeedback(int id, Feedback feedbackDetails) {
         Feedback feedback = feedbackRepository.findById(id).orElseThrow();
-        feedback.setUsername(feedbackDetails.getUsername());
         feedback.setRating(feedbackDetails.getRating());
         feedback.setMessage(feedbackDetails.getMessage());
         feedback.setEmail(feedbackDetails.getEmail());
+        
+        // Ensure the user exists and is set correctly
+        if (feedbackDetails.getUser() != null) {
+            User user = userRepository.findById(feedbackDetails.getUser().getId()).orElseThrow();
+            feedback.setUser(user);
+        }
+        
         return feedbackRepository.save(feedback);
     }
 }

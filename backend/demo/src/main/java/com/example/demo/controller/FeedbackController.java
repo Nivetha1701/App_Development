@@ -29,6 +29,10 @@ public class FeedbackController {
 
     @PostMapping
     public Feedback createFeedback(@RequestBody Feedback feedback) {
+        // Ensure the user exists before saving feedback
+        if (feedback.getUser() != null) {
+            feedback.setUser(feedback.getUser()); // Ensure the user is set
+        }
         return feedbackService.saveFeedback(feedback);
     }
 

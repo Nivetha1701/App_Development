@@ -34,7 +34,7 @@ public class AddToCartService {
         Optional<AddToCart> itemOptional = addToCartRepository.findById(id);
         if (itemOptional.isPresent()) {
             AddToCart item = itemOptional.get();
-            item.setName(itemDetails.getName());
+            item.setProductName(itemDetails.getProductName());
             item.setPrice(itemDetails.getPrice());
             item.setTotalPrice(itemDetails.getTotalPrice());
             return addToCartRepository.save(item);

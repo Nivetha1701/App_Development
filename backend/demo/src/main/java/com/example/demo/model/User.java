@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -20,12 +22,15 @@ public class User {
     private String mobileNumber;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Product> products;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Order> orders;  
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Feedback> feedbacks;  
 
     // Default constructor
