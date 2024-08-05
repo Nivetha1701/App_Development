@@ -20,6 +20,8 @@ public class User {
     private String email;
     private String password;
     private String mobileNumber;
+    private String roles;
+
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
@@ -93,6 +95,14 @@ public class User {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public Set<Product> getProducts() {
