@@ -16,8 +16,7 @@ public class Payment {
     private String expirationDate;
 
     @OneToOne
-    @JoinColumn(name = "order_id") // JoinColumn to specify the foreign key
-    @JsonIgnore
+    @JoinColumn(name = "order_id") 
     private Order order;
 
     // Default constructor

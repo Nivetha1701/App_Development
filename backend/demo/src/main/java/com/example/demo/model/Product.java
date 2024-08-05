@@ -17,8 +17,7 @@ public class Product {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // JoinColumn to specify the foreign key
-    @JsonIgnore
+    @JoinColumn(name = "user_id") 
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
