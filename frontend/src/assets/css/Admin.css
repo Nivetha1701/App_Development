@@ -206,8 +206,8 @@ body {
 }
 
 .income-section img {
-    width: 450px; /* Adjust width as needed */
-    height: 39vh; /* Adjust height as needed */
+    width: 500px; /* Adjust width as needed */
+    height: 45vh; /* Adjust height as needed */
     object-fit: cover; /* Ensure the image covers the area without distortion */
     display: block;
     margin: 0 auto; /* Center the images */

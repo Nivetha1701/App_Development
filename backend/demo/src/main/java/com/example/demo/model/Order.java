@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,15 +19,25 @@ public class Order {
     private String email;
     private String address;
     private String mobile;
-    
-    public Order(Integer id, String name, String email, String mobile, String address) {
+
+    @ManyToOne
+    private User user;  
+
+    @OneToOne(mappedBy = "order")
+    private Payment payment;  
+
+    public Order() {
+    }
+
+    public Order(Integer id, String name, String email, String mobile, String address, User user, Payment payment) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.address = address;
+        this.user = user;
+        this.payment = payment;
     }
-
 
     // Getters and Setters
     public Integer getId() {
@@ -66,5 +78,21 @@ public class Order {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

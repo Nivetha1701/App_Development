@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import '../assets/css/Deals.css';
 import deal1 from '../assets/images/deal1.jpg'; 
 import deal2 from '../assets/images/deal2.jpg';
@@ -33,7 +32,6 @@ const Deals = () => {
             <Card.Body className="deal-card-body">
               <Card.Text className="deal-card-price">{deal.price}</Card.Text>
               <Card.Title className="deal-card-title">{deal.title}</Card.Title>
-              {/* <Button variant="primary" className="deal-card-button">Add to Cart</Button> */}
             </Card.Body>
           </Card>
         ))}

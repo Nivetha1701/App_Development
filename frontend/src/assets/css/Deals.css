@@ -27,6 +27,7 @@
     flex-direction: column;
     border: 1px solid #ddd; /* Add border to cards */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow to cards */
+    cursor: pointer;
   }
   
   .deal-card-img {

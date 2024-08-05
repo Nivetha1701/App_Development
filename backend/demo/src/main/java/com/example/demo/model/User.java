@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -16,6 +18,15 @@ public class User {
     private String email;
     private String password;
     private String mobileNumber;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Product> products;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;  
+
+    @OneToMany(mappedBy = "user")
+    private Set<Feedback> feedbacks;  
 
     // Default constructor
     public User() {
@@ -77,5 +88,29 @@ public class User {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Set<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }

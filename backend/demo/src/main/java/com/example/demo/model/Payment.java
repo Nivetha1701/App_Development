@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Payment {
@@ -16,16 +17,20 @@ public class Payment {
     private String cvc;
     private String expirationDate;
 
+    @OneToOne
+    private Order order;  // Relationship with Order
+
     // Default constructor
     public Payment() {
     }
 
     // Parameterized constructor
-    public Payment(String name, String cardNumber, String cvc, String expirationDate) {
+    public Payment(String name, String cardNumber, String cvc, String expirationDate, Order order) {
         this.name = name;
         this.cardNumber = cardNumber;
         this.cvc = cvc;
         this.expirationDate = expirationDate;
+        this.order = order;
     }
 
     // Getters and Setters
@@ -67,5 +72,13 @@ public class Payment {
 
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

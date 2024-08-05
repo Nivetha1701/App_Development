@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Feedback {
@@ -16,12 +17,19 @@ public class Feedback {
     private String message;
     private String email;
 
-    public Feedback(int id, String username, int rating, String message, String email) {
+    @ManyToOne
+    private User user;  // Relationship with User
+
+    public Feedback() {
+    }
+
+    public Feedback(int id, String username, int rating, String message, String email, User user) {
         this.id = id;
         this.username = username;
         this.rating = rating;
         this.message = message;
         this.email = email;
+        this.user = user;
     }
 
     // Getters and Setters
@@ -63,5 +71,13 @@ public class Feedback {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

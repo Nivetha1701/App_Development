@@ -30,6 +30,13 @@ import product21 from '../assets/images/product21.jpg';
 import product22 from '../assets/images/product22.jpg';
 import product23 from '../assets/images/product23.jpg';
 import product24 from '../assets/images/product24.jpg';
+import product25 from '../assets/images/deal1.jpg';
+import product26 from '../assets/images/deal2.jpg';
+import product27 from '../assets/images/deal3.jpg';
+import product28 from '../assets/images/deal4.jpg';
+import product29 from '../assets/images/deal5.jpg';
+import product30 from '../assets/images/deal6.jpg';
+import product31 from '../assets/images/deal7.jpg';
 
 const allProducts = [
   { id: 1, name: 'Orange', image: product1, price: '10.00', category: 'fruits-vegetables' },
@@ -56,6 +63,13 @@ const allProducts = [
   { id: 22, name: 'Surf excel powder', image: product22, price: '45.00', category: 'cleaning-household' },
   { id: 23, name: 'Buckets', image: product23, price: '10.50', category: 'cleaning-household' },
   { id: 24, name: 'Freshener', image: product24, price: '5.75', category: 'cleaning-household' },
+  { id: 25, name: 'Freshener', image: product25, price: '5.75', category: 'Hot deals' },
+  { id: 26, name: 'Freshener', image: product26, price: '5.75', category: 'Hot deals' },
+  { id: 27, name: 'Freshener', image: product27, price: '5.75', category: 'Hot deals' },
+  { id: 28, name: 'Freshener', image: product28, price: '5.75', category: 'Hot deals' },
+  { id: 29, name: 'Freshener', image: product29, price: '5.75', category: 'Hot deals' },
+  { id: 30, name: 'Freshener', image: product30, price: '5.75', category: 'Hot deals' },
+  { id: 31, name: 'Freshener', image: product31, price: '5.75', category: 'Hot deals' },
 ];
 
 const Products = () => {

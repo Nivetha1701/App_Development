@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import qrcode from '../assets/images/qrcode.jpg';
 import '../assets/css/Payment.css';
-import Feedback from './Feedback'; // Import Feedback component
+import Feedback from './Feedback'; 
 
 const Payment = () => {
     const [paymentMethod, setPaymentMethod] = useState('card');
-    const [showFeedback, setShowFeedback] = useState(false); // State to control feedback form display
+    const [showFeedback, setShowFeedback] = useState(false); 
     const navigate = useNavigate();
 
     const handlePaymentMethodChange = (event) => {
@@ -15,13 +15,12 @@ const Payment = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Show a browser alert
         window.alert('Payment Successful!');
-        setShowFeedback(true); // Show feedback form
+        setShowFeedback(true);
     };
 
     if (showFeedback) {
-        return <Feedback />; // Render Feedback form if payment is successful
+        return <Feedback />; 
     }
 
     return (
@@ -84,7 +83,7 @@ const Payment = () => {
                         <div className="scan-qr">
                             <p>or scan with this qr code</p>
                             <img
-                                src={qrcode} // Replace with the actual path to your QR code image
+                                src={qrcode} 
                                 alt="Scan with QR Code"
                                 className="qr-image"
                             />

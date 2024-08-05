@@ -275,3 +275,23 @@
 .user-dashboard .product-details p {
   margin: 5px 0;
 }
+
+.user-dashboard .orders-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.user-dashboard .product-card {
+  border: 1px solid #ccc;
+  background-color: #c0d4e1;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Ensure all cards have the same width */
+}

@@ -1,29 +1,36 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
-    
+
     private String productName;
     private double rating;
     private double price;
 
+    @ManyToOne
+    private User user;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AddToCart> cartItems;
+
+    // Default constructor
     public Product() {
     }
 
-    public Product(int productId, String productName, double rating, double price) {
+    // Parameterized constructor
+    public Product(int productId, String productName, double rating, double price, User user) {
         this.productId = productId;
         this.productName = productName;
         this.rating = rating;
         this.price = price;
+        this.user = user;
     }
 
     // Getters and Setters
@@ -57,5 +64,21 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<AddToCart> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<AddToCart> cartItems) {
+        this.cartItems = cartItems;
     }
 }

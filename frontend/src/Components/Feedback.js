@@ -17,7 +17,7 @@ const Feedback = () => {
     setSubmitted(true);
     setTimeout(() => {
       navigate('/');
-    }, 1000); // Redirects after 2 seconds
+    }, 1000); 
   };
 
   return (

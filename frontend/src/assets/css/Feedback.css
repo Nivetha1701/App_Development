@@ -8,6 +8,22 @@
     margin-top: 85px;
   }
   
+  .feedback-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/orderimg.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+    filter: blur(4px); /* Adjust the blur value as needed */
+    z-index: -1; /* Ensure the blurred image stays behind the content */
+  }
+  
+
   .feedback-form h1 {
     text-align: center;
     margin-bottom: 1rem;
