@@ -84,3 +84,9 @@
     font-size: 0.9rem;
     height: 6vh;
 }
+
+.star-rating {
+    margin-left: 10px; /* Adjust the value to move it further right */
+    display: inline-flex; /* Ensures it aligns correctly with the product name */
+  }
+  

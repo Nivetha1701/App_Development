@@ -4,6 +4,7 @@ import com.example.demo.model.Order;
 import com.example.demo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +17,32 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
-    // Create a new Order
+    // Create a new Order - accessible by admins only
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderRepository.save(order);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        Order createdOrder = orderRepository.save(order);
+        return ResponseEntity.ok(createdOrder);
     }
 
-    // Get all Orders
+    // Get all Orders - accessible by admins and users
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
-    // Get a single Order by ID
+    // Get a single Order by ID - accessible by admins and the user who placed the order
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
         Optional<Order> order = orderRepository.findById(id);
         return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Update an Order
+    // Update an Order - accessible by admins only
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Order> updateOrder(@PathVariable Integer id, @RequestBody Order orderDetails) {
         Optional<Order> orderOptional = orderRepository.findById(id);
         if (orderOptional.isPresent()) {
@@ -52,8 +58,9 @@ public class OrderController {
         }
     }
 
-    // Delete an Order
+    // Delete an Order - accessible by admins only
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
         if (orderRepository.existsById(id)) {
             orderRepository.deleteById(id);

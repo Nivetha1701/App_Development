@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import '../assets/css/Products.css';
 import { useCart } from './CartContext'; // Import useCart hook
 import { useNavigate, useLocation } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa'; // Import star icon
 
 // Product images
 import product1 from '../assets/images/product1.jpg';
@@ -63,13 +64,13 @@ const allProducts = [
   { id: 22, name: 'Surf excel powder', image: product22, price: '45.00', category: 'cleaning-household' },
   { id: 23, name: 'Buckets', image: product23, price: '10.50', category: 'cleaning-household' },
   { id: 24, name: 'Freshener', image: product24, price: '5.75', category: 'cleaning-household' },
-  { id: 25, name: 'Freshener', image: product25, price: '5.75', category: 'Hot deals' },
-  { id: 26, name: 'Freshener', image: product26, price: '5.75', category: 'Hot deals' },
-  { id: 27, name: 'Freshener', image: product27, price: '5.75', category: 'Hot deals' },
-  { id: 28, name: 'Freshener', image: product28, price: '5.75', category: 'Hot deals' },
-  { id: 29, name: 'Freshener', image: product29, price: '5.75', category: 'Hot deals' },
-  { id: 30, name: 'Freshener', image: product30, price: '5.75', category: 'Hot deals' },
-  { id: 31, name: 'Freshener', image: product31, price: '5.75', category: 'Hot deals' },
+  { id: 25, name: 'Eye Liner', image: product25, price: '13.75', category: 'Hot deals' },
+  { id: 26, name: 'Perfume', image: product26, price: '10.75', category: 'Hot deals' },
+  { id: 27, name: 'Face Cream', image: product27, price: '5.75', category: 'Hot deals' },
+  { id: 28, name: 'Face wash', image: product28, price: '8.75', category: 'Hot deals' },
+  { id: 29, name: 'Slipper', image: product29, price: '20.75', category: 'Hot deals' },
+  { id: 30, name: 'Sunscreen', image: product30, price: '10.75', category: 'Hot deals' },
+  { id: 31, name: 'Moisturizer', image: product31, price: '14.75', category: 'Hot deals' },
 ];
 
 const Products = () => {
@@ -98,7 +99,21 @@ const Products = () => {
           <Card key={product.id} className="product-card">
             <Card.Img variant="top" src={product.image} className="product-card-img" />
             <Card.Body className="product-card-body">
-              <Card.Title className="product-card-title">{product.name}</Card.Title>
+              <Card.Title className="product-card-title">{product.name}
+              <span className="star-rating">
+              {[...Array(5)].map((star, index) => {
+              const ratingValue = index + 1;
+              return (
+                 <FaStar
+                 key={index}
+                  color={ratingValue <= product.rating ? 'gold' : '#ffc30b'}
+                  size={14}
+                  />
+                );
+                  })}
+              </span>
+
+              </Card.Title>
               <Card.Text className="product-card-price">₹{product.price}</Card.Text>
               <div className="product-card-buttons">
                 <Button className="add-to-cart-btn" variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
