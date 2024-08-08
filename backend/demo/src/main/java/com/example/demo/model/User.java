@@ -19,9 +19,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String mobileNumber;
+    private String mobile;
     private String roles;
-
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
@@ -40,12 +39,12 @@ public class User {
     }
 
     // Parameterized constructor
-    public User(String firstName, String lastName, String email, String password, String mobileNumber) {
+    public User(String firstName, String lastName, String email, String password, String mobile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.mobileNumber = mobileNumber;
+        this.mobile = mobile;
     }
 
     // Getters and Setters
@@ -89,12 +88,12 @@ public class User {
         this.password = password;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getRoles() {

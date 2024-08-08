@@ -30,7 +30,7 @@ function Login() {
     return true;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const isValid = validate();
     if (isValid) {

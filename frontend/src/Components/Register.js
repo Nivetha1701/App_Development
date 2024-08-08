@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Register.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import axios from 'axios';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ function Register() {
 
     const [successMessage, setSuccessMessage] = useState("");
     const [isFormVisible, setFormVisible] = useState(true);
+
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -64,25 +66,34 @@ function Register() {
         return true;
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const isValid = validate();
         if (isValid) {
-            console.log(formData);
-
-            // Store user data in local storage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            users.push(formData);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            setFormData({ firstName: "", lastName: "", email: "", password: "", mobile: "" });
-            setErrors({ firstName: "", lastName: "", email: "", password: "", mobile: "" });
-            setSuccessMessage("Registration successful");
-            
-            // Delay navigation to show success message
-            setTimeout(() => {
-                navigate('/login');
-            }, 2000); // 2 seconds delay
+            try {
+                const response = await axios.post("http://127.0.0.1:8080/users", {
+                    id: 0,
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    password: formData.password,
+                    mobile: formData.mobile,
+                    roles: "USER",
+                });
+                if (response.status === 200 || response.status === 201) {
+                    alert("User created successfully");
+                    setSuccessMessage("Registration successful");
+                    navigate('/login');
+                }
+                else 
+                {
+                    alert("User creation failed");
+                }
+                
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong");
+            }
         }
     };
 
