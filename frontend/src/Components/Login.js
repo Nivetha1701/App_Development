@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { loginSuccess } from '../redux/Action';
 import '../assets/css/Login.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -34,23 +35,32 @@ function Login() {
     event.preventDefault();
     const isValid = validate();
     if (isValid) {
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      const user = users.find(user => user.email === formData.email && user.password === formData.password);
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/api/auth/authenticate", 
+          {
+            email: formData.email,
+            password: formData.password,
+          }
+        );
+        console.log(response);
+        localStorage.setItem("token", response.data.token); // Save token
+        localStorage.setItem("role", response.data.role);  // Save role separately
+        const role = response.data.role; // Retrieve role directly
 
-      if (user || (formData.email === 'nivethabs2004@gmail.com' && formData.password === 'nivetha2004')) {
-        dispatch(loginSuccess(user || { email: formData.email, password: formData.password }));
-        setSuccessMessage("Login successful");
-        
-        if (formData.email === 'nivethabs2004@gmail.com' && formData.password === 'nivetha2004') {
-          setTimeout(() => navigate('/admin'), 2000); // Redirect to admin page
+        if (role === "ROLE_ADMIN") {
+          navigate("/admin");
         } else {
-          setTimeout(() => navigate('/'), 2000); // Redirect to home page
+          alert("Login successful");
+          navigate('/'); // Redirect to homepage for other users
         }
-      } else {
-        setErrors({ email: "Invalid email or password", password: "" });
+      } catch (error) {
+        console.error('Login failed:', error);
+        setErrors({ email: "Login failed. Please check your credentials and try again."});
       }
     }
   };
+
 
   return (
     <div className={`login-page`}>
