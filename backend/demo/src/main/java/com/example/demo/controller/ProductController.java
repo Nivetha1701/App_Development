@@ -19,7 +19,7 @@ public class ProductController {
 
     // Retrieve all products - accessible by admins and users
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -27,7 +27,7 @@ public class ProductController {
 
     // Retrieve a product by ID - accessible by admins and users
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Product> getProductById(@PathVariable int id) {
         Product product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
@@ -35,7 +35,7 @@ public class ProductController {
 
     // Create a new product - accessible by admins only
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product createdProduct = productService.saveProduct(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
@@ -43,7 +43,7 @@ public class ProductController {
 
     // Update an existing product - accessible by admins only
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product) {
         product.setProductId(id);
         Product updatedProduct = productService.updateProduct(product);
@@ -52,7 +52,7 @@ public class ProductController {
 
     // Delete a product by ID - accessible by admins only
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Void> deleteProduct(@PathVariable int id) {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

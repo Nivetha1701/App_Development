@@ -12,12 +12,11 @@ public class AddToCart {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id") // JoinColumn to specify the foreign key
     @JsonIgnore
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // JoinColumn to specify the foreign key
+    @JoinColumn(name = "user_id") 
     @JsonIgnore
     private User user;
 

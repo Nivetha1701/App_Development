@@ -4,20 +4,61 @@ import '../assets/css/Feedback.css';
 
 const Feedback = () => {
   const [email, setEmail] = useState('');
-  const [rating, setRating] = useState('');
   const [emojiRating, setEmojiRating] = useState('');
   const [suggestions, setSuggestions] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [rating, setRating] = useState(''); // Added rating state
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ email, emojiRating, rating, suggestions });
 
-    setSubmitted(true);
-    setTimeout(() => {
-      navigate('/');
-    }, 1000); 
+    const feedbackDetails = {
+      email: email,
+      rating: getNumericRating(emojiRating), 
+      message: suggestions,
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:8080/api/feedbacks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackDetails),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
+      } else {
+        const errorText = await response.text();
+        console.error('Failed to submit feedback:', errorText);
+        alert('Failed to submit feedback. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while submitting feedback.');
+    }
+  };
+
+  const getNumericRating = (emojiRating) => {
+    switch (emojiRating) {
+      case 'Very Dissatisfied':
+        return 1;
+      case 'Dissatisfied':
+        return 2;
+      case 'Neutral':
+        return 3;
+      case 'Satisfied':
+        return 4;
+      case 'Very Satisfied':
+        return 5;
+      default:
+        return 0;
+    }
   };
 
   return (

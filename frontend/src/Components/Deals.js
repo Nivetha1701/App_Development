@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/Deals.css';
 import deal1 from '../assets/images/deal1.jpg'; 
 import deal2 from '../assets/images/deal2.jpg';
@@ -11,6 +12,8 @@ import deal7 from '../assets/images/deal7.jpg';
 import deal8 from '../assets/images/deal8.jpg';
 
 const Deals = () => {
+  const navigate = useNavigate();
+
   const deals = [
     { image: deal1, title: 'Eyeliner', price: '₹10.00' },
     { image: deal2, title: 'Perfumes', price: '₹20.00' },
@@ -22,12 +25,16 @@ const Deals = () => {
     { image: deal8, title: 'Herbal hair oil', price: '₹45.00' },
   ];
 
+  const handleCardClick = (deal) => {
+    navigate('/products', { state: { category: 'Hot deals' } });
+  };
+
   return (
     <div className="deals">
       <h2>Hot Deals</h2>
       <div className="cards">
         {deals.map((deal, idx) => (
-          <Card key={idx} className="deal-card">
+          <Card key={idx} className="deal-card" onClick={() => handleCardClick(deal)}>
             <Card.Img variant="top" src={deal.image} className="deal-card-img" />
             <Card.Body className="deal-card-body">
               <Card.Text className="deal-card-price">{deal.price}</Card.Text>

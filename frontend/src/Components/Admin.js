@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Admin.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import adminImage from '../assets/images/admin.png';
@@ -207,6 +207,9 @@ function Admin() {
             </li>
             <li className={activeSection === 'messages' ? 'active' : ''} onClick={() => setActiveSection('messages')}>
               <i className="fas fa-envelope"></i> Messages
+            </li>
+            <li className={activeSection === 'messages' ? 'active' : ''} onClick={() => setActiveSection('product')}>
+              <i className="fas fa-envelope"></i> <Link to="/product">Products</Link>
             </li>
             <li onClick={handleLogout}>
               <i className="fas fa-sign-out-alt"></i> Logout

@@ -20,7 +20,7 @@ public class UserController {
 
     // Retrieve all users - accessible by admins only
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -28,7 +28,7 @@ public class UserController {
 
     // Retrieve a user by ID - accessible by admins and the user themselves
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') ")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
         Optional<User> user = userService.getUserById(id);
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))

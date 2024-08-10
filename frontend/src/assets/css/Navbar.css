@@ -100,18 +100,18 @@
 }
 
 .navbar-search input {
-  padding: 8px 40px 8px 18px;
+  padding: 8px 40px 8px 10px;
   border-radius: 3px;
   border: none;
-  margin-right: 60px;
+  margin-left: -30px;
 }
 
 .navbar-search .search-icon {
   position: absolute;
-  right: 70px;
+  right: 40px;
   color: rgb(0, 0, 0);
   font-size: 18px;
-  margin-bottom: 4px;
+  margin-top: 7px;
 }
 
 .user-icon {
@@ -123,7 +123,7 @@
 }
 
 .dropdown-menu {
-  display: none;
+  display: flex;
   position: absolute;
   top: 100%;
   right: 0;
@@ -133,12 +133,7 @@
   border-radius: 5px;
   z-index: 1000;
   flex-direction: column;
-  width: 130px; /* Adjust this value to increase the width */
-}
-
-.user-icon:hover .dropdown-menu,
-.user-icon:focus .dropdown-menu {
-  display: flex;
+  width: 130px;
 }
 
 .dropdown-menu a {

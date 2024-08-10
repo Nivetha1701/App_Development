@@ -15,9 +15,20 @@ public class Product {
     private String productName;
     private double rating;
     private double price;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id") 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @ManyToOne 
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -29,10 +40,11 @@ public class Product {
     }
 
     // Parameterized constructor
-    public Product(String productName, double rating, double price, User user) {
+    public Product(String productName, double rating, double price, User user,String image) {
         this.productName = productName;
         this.rating = rating;
         this.price = price;
+        this.image=image;
         this.user = user;
     }
 

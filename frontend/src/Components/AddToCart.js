@@ -7,11 +7,16 @@ const AddToCart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
 
-  // Calculate the total price of items in the cart
   const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price), 0);
 
+  const isLoggedIn = !!localStorage.getItem('token');
+
   const handleBuyNow = () => {
-    navigate('/orderpage', { state: { totalPrice } }); // Pass totalPrice to Orderpage
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      navigate('/orderpage', { state: { totalPrice } });
+    }
   };
 
   return (
@@ -24,7 +29,7 @@ const AddToCart = () => {
               <img src={item.image} alt={item.name} className="cart-item-img" />
               <div className="cart-item-details">
                 <h4>{item.name}</h4>
-                <p>${parseFloat(item.price).toFixed(2)}</p>
+                <p>₹{parseFloat(item.price).toFixed(2)}</p>
                 <button className="remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             </div>
@@ -34,7 +39,7 @@ const AddToCart = () => {
         )}
       </div>
       <div className="cart-summary">
-        <p>Total Price: ${totalPrice.toFixed(2)}</p>
+        <p>Total Price: ₹{totalPrice.toFixed(2)}</p>
         <button className="buy-now-btn" onClick={handleBuyNow}>Buy Now</button>
       </div>
       <button className="clear-cart-btn" onClick={clearCart}>Clear Cart</button>

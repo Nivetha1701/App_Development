@@ -1,19 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Navbar.css';
-import logo from '../assets/images/logo.png'; 
+import logo from '../assets/images/logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const navigate = useNavigate(); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Update the state based on the presence of the token
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const handleLoginClick = () => {
-    navigate('/login'); 
+    navigate('/login');
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setIsLoggedIn(false);
+    navigate('/login');
   };
 
   const handleUserIconClick = () => {
     setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate('/products', { state: { searchQuery } });
   };
 
   return (
@@ -32,16 +68,31 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-search">
-        <input type="text" placeholder="Type here to Search" />
+      <form onSubmit={handleSearchSubmit}>
+          <input
+            type="text"
+            placeholder="Type here to Search"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
         <i className="fas fa-search search-icon"></i>
+        </form>
       </div>
       <div className="user-icon" onClick={handleUserIconClick}>
         <i className="fas fa-user"></i>
         {dropdownVisible && (
           <div className="dropdown-menu">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Signup</Link>
-            <Link to="/user">My Account</Link>
+            {isLoggedIn ? (
+              <>
+                <Link to="/user">My Account</Link>
+                <a href="#" onClick={handleLogoutClick}>Logout</a>
+              </>
+            ) : (
+              <>
+                <a href="#" onClick={handleLoginClick}>Login</a>
+                <Link to="/register">Signup</Link>
+              </>
+            )}
           </div>
         )}
       </div>

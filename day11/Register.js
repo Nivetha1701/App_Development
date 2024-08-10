@@ -78,7 +78,7 @@ function Register() {
                     email: formData.email,
                     password: formData.password,
                     mobile: formData.mobile,
-                    roles: "ROLE_USER",
+                    roles: "USER",
                 });
                 if (response.status === 200 || response.status === 201) {
                     alert("User created successfully");

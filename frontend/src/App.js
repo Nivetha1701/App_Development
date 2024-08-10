@@ -16,6 +16,7 @@ import { CartProvider } from './Components/CartContext';
 import User from './Components/User';
 import Payment from './Components/Payment';
 import Feedback from './Components/Feedback';
+import ProductManage from './Components/ProductManage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route path="/admin" element={<Admin />} />
           <Route path="/user" element={<User />} />
+          <Route path="/product" element={<ProductManage/>} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

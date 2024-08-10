@@ -27,6 +27,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User findUserByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.orElse(null); // Or handle the case where the user is not found
+    }
+    
+
     // Create a new user
     public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));

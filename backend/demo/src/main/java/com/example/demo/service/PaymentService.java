@@ -23,8 +23,14 @@ public class PaymentService {
     }
 
     public Payment savePayment(Payment payment) {
+        // Validate order
+        if (payment.getOrder() == null || payment.getOrder().getId() == null) {
+            throw new IllegalArgumentException("Order cannot be null or missing ID");
+        }
+        // Save payment
         return paymentRepository.save(payment);
     }
+    
 
     public void deletePayment(int id) {
         paymentRepository.deleteById(id);

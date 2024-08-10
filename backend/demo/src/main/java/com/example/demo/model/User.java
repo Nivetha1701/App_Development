@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,9 +31,13 @@ public class User {
     @JsonIgnore
     private Set<Order> orders;  
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Feedback> feedbacks;  
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<AddToCart> cartItems;
 
     // Default constructor
     public User() {
@@ -126,5 +131,18 @@ public class User {
 
     public void setFeedbacks(Set<Feedback> feedbacks) {
         this.feedbacks = feedbacks;
+    }
+
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+    }
+
+    public Set<AddToCart> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(Set<AddToCart> cartItems) {
+        this.cartItems = cartItems;
     }
 }

@@ -1,26 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import qrcode from '../assets/images/qrcode.jpg';
 import '../assets/css/Payment.css';
-import Feedback from './Feedback'; 
+import Feedback from './Feedback';
 
 const Payment = () => {
     const [paymentMethod, setPaymentMethod] = useState('card');
-    const [showFeedback, setShowFeedback] = useState(false); 
+    const [name, setName] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [cvc, setCvc] = useState('');
+    const [expirationDate, setExpirationDate] = useState('');
+    const [order, setOrder] = useState(null);
+    const [showFeedback, setShowFeedback] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchOrder = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/orders');
+                if (response.ok) {
+                    const orders = await response.json();
+                    setOrder(orders[orders.length - 1]); 
+                } else {
+                    console.error('Failed to fetch orders');
+                }
+            } catch (error) {
+                console.error('Error fetching order:', error);
+            }
+        };
+        fetchOrder();
+    }, []);
 
     const handlePaymentMethodChange = (event) => {
         setPaymentMethod(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        window.alert('Payment Successful!');
-        setShowFeedback(true);
+
+        if (!order) {
+            window.alert('Order not found. Please try again.');
+            return;
+        }
+
+        const paymentDetails = paymentMethod === 'card' ? {
+            name,
+            cardNumber,
+            cvc,
+            expirationDate,
+            order: order 
+        } : {
+            name,
+            order: order 
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/api/payments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(paymentDetails),
+            });
+
+            if (response.ok) {
+                window.alert('Payment Successful!');
+                setShowFeedback(true);
+            } else {
+                window.alert('Payment Failed!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            window.alert('An error occurred while processing your payment.');
+        }
     };
 
     if (showFeedback) {
-        return <Feedback />; 
+        return <Feedback />;
     }
 
     return (
@@ -52,15 +108,33 @@ const Payment = () => {
                     <div className="card-details">
                         <div className="input-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Enter your Name" required />
+                            <input 
+                                type="text" 
+                                placeholder="Enter your Name" 
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required 
+                            />
                         </div>
                         <div className="input-group">
                             <label>Card Number</label>
-                            <input type="text" placeholder="Credit Card Number" required />
+                            <input 
+                                type="text" 
+                                placeholder="Credit Card Number" 
+                                value={cardNumber}
+                                onChange={(e) => setCardNumber(e.target.value)}
+                                required 
+                            />
                         </div>
                         <div className="input-group">
                             <label>Security Code (CVC)</label>
-                            <input type="text" placeholder="CVC" required />
+                            <input 
+                                type="text" 
+                                placeholder="CVC" 
+                                value={cvc}
+                                onChange={(e) => setCvc(e.target.value)}
+                                required 
+                            />
                         </div>
                         <div className="input-group">
                             <label>Expiration Date</label>
@@ -68,6 +142,8 @@ const Payment = () => {
                                 type="text"
                                 placeholder="MM/YYYY"
                                 pattern="\d{2}/\d{4}"
+                                value={expirationDate}
+                                onChange={(e) => setExpirationDate(e.target.value)}
                                 required
                             />
                         </div>
@@ -78,12 +154,16 @@ const Payment = () => {
                     <div className="upi-details">
                         <div className="input-group">
                             <label>UPI ID</label>
-                            <input type="text" placeholder="Enter your UPI ID" required />
+                            <input 
+                                type="text" 
+                                placeholder="Enter your UPI ID" 
+                                required 
+                            />
                         </div>
                         <div className="scan-qr">
                             <p>or scan with this qr code</p>
                             <img
-                                src={qrcode} 
+                                src={qrcode}
                                 alt="Scan with QR Code"
                                 className="qr-image"
                             />

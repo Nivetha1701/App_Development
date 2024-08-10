@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Order;
+import com.example.demo.model.User;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,24 +21,36 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
-    // Create a new Order - accessible by admins only
+     @Autowired
+    private UserService userService;
+
+    // Create a new Order - accessible by all users (admins or regular users)
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    // Retrieve the user by email
+    User user = userService.findUserByEmail(order.getEmail());
+    
+    if (user != null) {
+        order.setUser(user);  // Associate the user with the order
         Order createdOrder = orderRepository.save(order);
         return ResponseEntity.ok(createdOrder);
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(null);
     }
+}
 
-    // Get all Orders - accessible by admins and users
+    // Get all Orders - accessible by admins and regular users
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("permitAll()")
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
     // Get a single Order by ID - accessible by admins and the user who placed the order
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or (hasRole('ROLE_USER') )")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
         Optional<Order> order = orderRepository.findById(id);
         return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

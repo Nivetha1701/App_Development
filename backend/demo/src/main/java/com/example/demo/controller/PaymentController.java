@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Order;
 import com.example.demo.model.Payment;
+import com.example.demo.repository.OrderRepository;
 import com.example.demo.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +15,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/payments")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private OrderRepository orderRepository; // Inject the OrderRepository
 
     // Retrieve all payments - accessible by admins and users
     @GetMapping
@@ -33,13 +39,24 @@ public class PaymentController {
         Optional<Payment> payment = paymentService.getPaymentById(id);
         return payment.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    // Create a new payment - accessible by admins and users
+    
     @PostMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
-        Payment savedPayment = paymentService.savePayment(payment);
-        return new ResponseEntity<>(savedPayment, HttpStatus.CREATED);
+        try {
+            // Retrieve the order by ID before saving the payment
+            Optional<Order> orderOptional = orderRepository.findById(payment.getOrder().getId());
+            if (orderOptional.isPresent()) {
+                payment.setOrder(orderOptional.get()); // Set the retrieved order
+                Payment savedPayment = paymentService.savePayment(payment);
+                return new ResponseEntity<>(savedPayment, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Order not found
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // Update an existing payment - accessible by admins only

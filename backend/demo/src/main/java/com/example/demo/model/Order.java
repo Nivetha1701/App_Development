@@ -17,9 +17,9 @@ public class Order {
     private String mobile;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") 
-    // @JsonIgnore
-    private User user;  
+    @JoinColumn(name = "user_id",nullable=false)  
+    @JsonIgnore
+    private User user;   
 
     @OneToOne(mappedBy = "order")
     @JsonIgnore
