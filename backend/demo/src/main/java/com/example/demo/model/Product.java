@@ -17,7 +17,7 @@ public class Product {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") 
+    @JoinColumn(name = "user_id", nullable = false) 
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

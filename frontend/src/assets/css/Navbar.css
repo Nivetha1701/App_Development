@@ -123,7 +123,7 @@
 }
 
 .dropdown-menu {
-  display: none;
+  display: flex;
   position: absolute;
   top: 100%;
   right: 0;
@@ -133,12 +133,7 @@
   border-radius: 5px;
   z-index: 1000;
   flex-direction: column;
-  width: 130px; /* Adjust this value to increase the width */
-}
-
-.user-icon:hover .dropdown-menu,
-.user-icon:focus .dropdown-menu {
-  display: flex;
+  width: 130px;
 }
 
 .dropdown-menu a {

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +16,8 @@ public class Payment {
     private String expirationDate;
 
     @OneToOne
-    @JoinColumn(name = "order_id") 
+    @JoinColumn(name = "order_id", nullable = false) 
+    // @JsonIgnore
     private Order order;
 
     // Default constructor

@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { loginSuccess } from '../redux/Action';
 import '../assets/css/Login.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isFormVisible, setFormVisible] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,16 +44,15 @@ function Login() {
           }
         );
         console.log(response);
-        localStorage.setItem("token", response.data.token); 
-        localStorage.setItem("role", response.data.role);  
-        const role = response.data.role; 
+        localStorage.setItem("token", response.data.token); // Save token
+        localStorage.setItem("role", response.data.role);  // Save role separately
+        const role = response.data.role; // Retrieve role directly
 
         if (role === "ROLE_ADMIN") {
           navigate("/admin");
         } else {
           alert("Login successful");
-          navigate('/'); 
-          window.location.reload(); // Refresh page to ensure state is updated in Navbar
+          navigate('/'); // Redirect to homepage for other users
         }
       } catch (error) {
         console.error('Login failed:', error);
@@ -59,13 +61,15 @@ function Login() {
     }
   };
 
+
   return (
     <div className={`login-page`}>
-      <div className={`login-container`}>
-        <div className="close-icon" onClick={() => navigate('/')}>
+      <div className={`login-container ${isFormVisible ? '' : 'hidden'}`}>
+        <div className="close-icon" onClick={() => setFormVisible(false)}>
           <i className="fas fa-times"></i>
         </div>
         <h2>LOGIN</h2>
+        {successMessage && <div className="success">{successMessage}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email</label>

@@ -1,15 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/Navbar.css';
-import logo from '../assets/images/logo.png'; 
+import logo from '../assets/images/logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const navigate = useNavigate(); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Update the state based on the presence of the token
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const handleLoginClick = () => {
-    navigate('/login'); 
+    navigate('/login');
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setIsLoggedIn(false);
+    navigate('/login');
   };
 
   const handleUserIconClick = () => {
@@ -39,9 +65,17 @@ function Navbar() {
         <i className="fas fa-user"></i>
         {dropdownVisible && (
           <div className="dropdown-menu">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Signup</Link>
-            <Link to="/user">My Account</Link>
+            {isLoggedIn ? (
+              <>
+                <Link to="/user">My Account</Link>
+                <a href="#" onClick={handleLogoutClick}>Logout</a>
+              </>
+            ) : (
+              <>
+                <a href="#" onClick={handleLoginClick}>Login</a>
+                <Link to="/register">Signup</Link>
+              </>
+            )}
           </div>
         )}
       </div>

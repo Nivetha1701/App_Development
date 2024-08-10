@@ -19,7 +19,7 @@ public class OrderController {
 
     // Create a new Order - accessible by admins only
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         Order createdOrder = orderRepository.save(order);
         return ResponseEntity.ok(createdOrder);

@@ -36,7 +36,7 @@ public class PaymentController {
 
     // Create a new payment - accessible by admins and users
     @PostMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
         Payment savedPayment = paymentService.savePayment(payment);
         return new ResponseEntity<>(savedPayment, HttpStatus.CREATED);
