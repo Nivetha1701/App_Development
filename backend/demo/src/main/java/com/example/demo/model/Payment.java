@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
+<<<<<<< HEAD
 // import com.fasterxml.jackson.annotation.JsonIgnore;
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> d675db0bf1bc1359334c5d3fd4104b31f506367e
 
 import jakarta.persistence.*;
 

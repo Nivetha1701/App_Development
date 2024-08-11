@@ -41,7 +41,11 @@ public class PaymentController {
     }
     
     @PostMapping
+<<<<<<< HEAD
     @PreAuthorize("permitAll()")
+=======
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+>>>>>>> d675db0bf1bc1359334c5d3fd4104b31f506367e
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
         try {
             // Retrieve the order by ID before saving the payment

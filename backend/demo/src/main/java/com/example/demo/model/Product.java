@@ -19,6 +19,7 @@ public class Product {
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
 
+<<<<<<< HEAD
     public String getImage() {
         return image;
     }
@@ -29,6 +30,10 @@ public class Product {
 
     @ManyToOne 
     @JsonIgnore
+=======
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false) 
+>>>>>>> d675db0bf1bc1359334c5d3fd4104b31f506367e
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
