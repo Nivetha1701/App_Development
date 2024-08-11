@@ -26,11 +26,7 @@ public class OrderController {
 
     // Create a new Order - accessible by all users (admins or regular users)
     @PostMapping
-<<<<<<< HEAD
     @PreAuthorize("permitAll()")
-=======
-    @PreAuthorize("hasRole('ROLE_USER')")
->>>>>>> d675db0bf1bc1359334c5d3fd4104b31f506367e
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
     // Retrieve the user by email
     User user = userService.findUserByEmail(order.getEmail());

@@ -7,10 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Navbar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-<<<<<<< HEAD
   const [searchQuery, setSearchQuery] = useState('');
-=======
->>>>>>> d675db0bf1bc1359334c5d3fd4104b31f506367e
   const navigate = useNavigate();
 
   useEffect(() => {
