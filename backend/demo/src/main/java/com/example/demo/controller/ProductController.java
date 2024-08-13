@@ -45,8 +45,8 @@ public class ProductController {
     @PutMapping("/{id}")
     @PreAuthorize("permitAll()")
     public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product) {
-        product.setProductId(id);
-        Product updatedProduct = productService.updateProduct(product);
+        // product.setProductId(id);
+        Product updatedProduct = productService.updateProduct(id,product);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 

@@ -50,7 +50,7 @@ function Login() {
         } else {
           alert("Login successful");
           navigate('/'); 
-          window.location.reload(); // Refresh page to ensure state is updated in Navbar
+          window.location.reload(); 
         }
       } catch (error) {
         console.error('Login failed:', error);

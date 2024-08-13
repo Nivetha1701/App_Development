@@ -25,10 +25,19 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Product product) {
+
+    public Product updateProduct(int productId, Product productDetails) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setProductName(productDetails.getProductName());
+        product.setRating(productDetails.getRating());
+        product.setPrice(productDetails.getPrice());
+        product.setImage(productDetails.getImage());
+        product.setUser(productDetails.getUser()); 
+
         return productRepository.save(product);
     }
-
     public void deleteProduct(int productId) {
         productRepository.deleteById(productId);
     }

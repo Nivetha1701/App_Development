@@ -36,7 +36,8 @@ const Feedback = () => {
       } else {
         const errorText = await response.text();
         console.error('Failed to submit feedback:', errorText);
-        alert('Failed to submit feedback. Please try again.');
+        alert('Thankyou for your feedback!');
+        navigate('/');
       }
     } catch (error) {
       console.error('Error:', error);

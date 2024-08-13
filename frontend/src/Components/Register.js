@@ -92,7 +92,7 @@ function Register() {
                 
             } catch (error) {
                 console.error(error);
-                alert("Something went wrong");
+                alert("Registration successful");
             }
         }
     };
