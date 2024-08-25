@@ -17,7 +17,7 @@ public class FeedbackService {
     private FeedbackRepository feedbackRepository;
 
     @Autowired
-    private UserRepository userRepository; // Add this for user lookups
+    private UserRepository userRepository; 
 
     public List<Feedback> getAllFeedbacks() {
         return feedbackRepository.findAll();

@@ -1,0 +1,105 @@
+/* Container for the feedback management */
+.manage-feedback {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 900px; /* Set a max-width for better readability */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Back link styling */
+.manage-feedback .bal {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(45deg, #5c7fc5, #4a6fa5, #426ccd, #a4b0cc);
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.manage-feedback .bal:hover {
+  background: linear-gradient(45deg, #0033aa, #0044cc, #0056b3, #0066cc); /* Reverse gradient on hover */
+  transform: scale(1.05); /* Slightly increase the button size on hover */
+}
+
+
+/* Heading styling */
+.manage-feedback h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #2a6051, #195c6c); /* Gradient from coral to yellow */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* Table styling */
+.manage-feedback table {
+  width: 100%;
+  max-width: 800px; /* Set max-width for a professional table width */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff; /* White background for the table */
+  border-radius: 8px; /* Rounded corners for the table */
+  overflow: hidden; /* Hide overflow for rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.manage-feedback thead {
+  /* background: linear-gradient(45deg, #bc8676, #bf9c69, #cfa09c, #cb6f8e);  */
+  background: linear-gradient(45deg, #5c7fc5, #4a6fa5, #426ccd, #a4b0cc);
+  color: #fff;
+  animation: flyIn 2s ease-in-out;
+}
+
+@keyframes flyIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.manage-feedback th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+.manage-feedback tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Very light gray for odd rows */
+}
+
+.manage-feedback tbody tr:nth-child(even) {
+  background-color: #f1f1f1; /* Light gray for even rows */
+}
+
+/* Hover effect for table rows */
+.manage-feedback tbody tr:hover {
+  background-color: #e0f7fa; /* Light cyan on hover */
+}
+
+/* Button styling */
+.manage-feedback button {
+  padding: 8px;
+  border: none;
+  color: #fff;
+  /* background: linear-gradient(45deg, #ff5722, #ff9800, #f44336, #e91e63); Multicolor gradient */
+  background: linear-gradient(90deg, #9eb0b4, #54585d 70%);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.manage-feedback button:hover {
+  background: linear-gradient(45deg, #e91e63, #f44336, #ff9800, #ff5722); /* Reverse gradient on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover for depth */
+}

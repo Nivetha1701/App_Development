@@ -1,0 +1,140 @@
+.user-management {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.user-management h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+.user-management .user-action-button, .user-edit-button, .user-delete-button, .user-close-modal-button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(90deg, #9eb0b4, #54585d 70%);
+    /* background: linear-gradient(90deg, #ff7a18, #af002d 70%, #ff7a18); */
+    animation: animate-gradient 3s infinite;
+    transition: background 0.3s ease;
+}
+
+.user-management .user-action-button:hover, .user-edit-button:hover, .user-delete-button:hover, .user-close-modal-button:hover {
+    background: linear-gradient(90deg, #af002d, #ff7a18 70%);
+}
+
+@keyframes animate-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.user-management .user-edit-button {
+    background: linear-gradient(90deg, #00c6ff, #0072ff 70%);
+}
+
+.user-management .user-delete-button {
+    /* background: linear-gradient(90deg, #ff7a18, #af002d 70%, #ff7a18); */
+    background: linear-gradient(90deg, #9eb0b4, #54585d 70%);
+}
+
+.user-management .user-close-modal-button {
+    background: linear-gradient(90deg, #ff0066, #ffcc00 70%);
+}
+
+/* Table Styles */
+.user-management .user-table {
+    width: 100%; /* Change this to adjust the width */
+    max-width: 1200px; /* Set a new max-width to increase the table width */
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    text-align: left;
+}
+
+.user-management .user-table th, .user-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background: #408eee;
+    color: #fff;
+}
+
+.user-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    text-align: center;
+    position: relative;
+    animation: slide-down 0.4s ease-out;
+}
+
+@keyframes slide-down {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.user-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.user-modal-grid input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+@media (max-width: 600px) {
+    .user-modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .user-modal-content {
+        width: 90%;
+    }
+}
+
+  
+.user-management .close-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    margin-top: 80px;
+    margin-right: 240px;
+  }
+  
+  .user-management .close-icon:hover {
+    color: #e84d56; /* Color change on hover, adjust as needed */
+  }
+  

@@ -61,6 +61,7 @@ public class User {
         this.id = id;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -132,10 +133,9 @@ public class User {
     public void setFeedbacks(Set<Feedback> feedbacks) {
         this.feedbacks = feedbacks;
     }
-
+    
     public String getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+        return email; // Or another field that represents the username
     }
 
     public Set<AddToCart> getCartItems() {

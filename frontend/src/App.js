@@ -17,6 +17,9 @@ import User from './Components/User';
 import Payment from './Components/Payment';
 import Feedback from './Components/Feedback';
 import ProductManage from './Components/ProductManage';
+import OrderManage from './Components/OrderManage';
+import FeedbackManage from './Components/FeedbackManage';
+import UserManage from './Components/UserManage';
 
 function App() {
   return (
@@ -40,6 +43,9 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/user" element={<User />} />
           <Route path="/product" element={<ProductManage/>} />
+          <Route path="/order" element={<OrderManage/>}  />
+          <Route path="/feedbackmanage" element={<FeedbackManage />} />
+          <Route path="/usermanage" element={<UserManage/>} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

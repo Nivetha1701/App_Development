@@ -1,4 +1,5 @@
- .turf-mana {
+/* Container */
+.turf-mana {
   padding: 20px;
 }
 
@@ -8,53 +9,89 @@
   margin: 0 auto;
 }
 
-.book-action-button{
-    margin-right: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 12px 8px; /* Reduced padding for smaller buttons */
-    font-size: 14px; /* Smaller font size */
-  }
-  
-   .book-edit-button {
-    background-color: #2d7799;
-    width: 100px;
-    margin-left: 40px;
-    gap: 50px;
-  }
+/* Buttons */
+.book-action-button {
+  margin-right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 8px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-  .book-delete-button {
-    background-color: #f44336;
-    width: 100px;
-    margin-left: 20px;
-  }
-  
-  .book-action-button:hover, .book-delete-button:hover, .book-edit-button:hover {
-    background-color: #45a049;
-  }
- 
+.book-edit-button {
+  background-color: #2d7799;
+  width: 100px;
+  margin-left: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.book-delete-button {
+  background-color: #f44336;
+  width: 100px;
+  margin-left: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.book-action-button:hover,
+.book-delete-button:hover,
+.book-edit-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Adding shadow effect */
+}
+
+.book-action-button:active,
+.book-delete-button:active,
+.book-edit-button:active {
+  transform: scale(0.95);
+  background-color: #3e8e41; /* Darker shade on click */
+}
+
+/* Table */
 .book-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.book-table th, .book-table td {
+.book-table th,
+.book-table td {
   border: 1px solid #858585;
   padding: 8px;
   text-align: left;
+  animation: fadeIn 1s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
 .book-table th {
   background-color: #f2f2f2;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.book-table th:hover {
+  background-color: #e0e0e0;
+  color: #333; /* Change text color on hover */
+}
+
+.book-table td:hover {
+  background-color: #f0f0f0;
+}
+
+/* Book Image */
 .book-image {
-  width: 100px; 
-  height: auto; 
+  width: 100px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Added filter for color effects */
 }
 
+.book-image:hover {
+  transform: rotate(5deg) scale(1.1);
+  filter: brightness(1.2) sepia(0.2); /* Add brightness and sepia effects on hover */
+}
+
+/* Modal */
 .book-modal-overlay {
   position: fixed;
   top: 0;
@@ -65,6 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .book-modal-content {
@@ -72,6 +110,9 @@
   padding: 20px;
   border-radius: 5px;
   width: 400px;
+  transform: scale(0);
+  animation: scaleUp 0.3s forwards;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
 .book-modal-grid {
@@ -79,6 +120,8 @@
   grid-template-columns: 1fr;
   gap: 10px;
   margin-bottom: 20px;
+  word-wrap: break-word;
+  animation: slideIn 0.5s ease-in-out;
 }
 
 .book-close-modal-button {
@@ -86,8 +129,45 @@
   padding: 5px 10px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .book-close-modal-button:hover {
   background-color: #999;
-} 
+  transform: rotate(-5deg) scale(1.05); /* Rotate and scale on hover */
+}
+
+.book-close-modal-button:active {
+  transform: rotate(-3deg) scale(0.95);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

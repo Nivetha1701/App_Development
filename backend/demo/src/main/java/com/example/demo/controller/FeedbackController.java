@@ -23,41 +23,27 @@ public class FeedbackController {
     @Autowired
     private UserService userService;
 
-    // Retrieve all feedbacks - accessible by admins only
+    // Retrieve all feedbacks
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<Feedback>> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
     }
 
-    // Retrieve a feedback by ID - accessible by admins and the user who created the feedback
+    // Retrieve a feedback by ID
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<Feedback> getFeedbackById(@PathVariable int id) {
         Optional<Feedback> feedback = feedbackService.getFeedbackById(id);
         return feedback.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-//     @PostMapping
-//      public ResponseEntity<?> submitFeedback(@RequestBody Feedback feedback) {
-//     try {
-//         // Assuming you save the feedback here
-//         feedbackService.saveFeedback(feedback);
-//         return ResponseEntity.ok("Feedback submitted successfully");
-//     } catch (Exception e) {
-//         // Log the error details
-//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting feedback");
-//     }
-// }
-
+    // Submit a new feedback
     @PostMapping
     @PreAuthorize("permitAll()")
     public ResponseEntity<Feedback> submitFeedback(@RequestBody Feedback feedback) {
-        // Retrieve user by email or another identifier
         User user = userService.findUserByEmail(feedback.getEmail());
         if (user != null) {
-            feedback.setUser(user); // Set the user for the feedback
+            feedback.setUser(user);
             Feedback savedFeedback = feedbackService.saveFeedback(feedback);
             return new ResponseEntity<>(savedFeedback, HttpStatus.CREATED);
         } else {
@@ -65,7 +51,7 @@ public class FeedbackController {
         }
     }
 
-    // Update an existing feedback - accessible by admins only
+    // Update an existing feedback
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Feedback> updateFeedback(@PathVariable int id, @RequestBody Feedback feedbackDetails) {
@@ -74,7 +60,7 @@ public class FeedbackController {
             Feedback feedback = existingFeedback.get();
             feedback.setRating(feedbackDetails.getRating());
             feedback.setMessage(feedbackDetails.getMessage());
-            feedback.setUser(feedbackDetails.getUser()); // Update user if needed
+            feedback.setUser(feedbackDetails.getUser());
             Feedback updatedFeedback = feedbackService.saveFeedback(feedback);
             return new ResponseEntity<>(updatedFeedback, HttpStatus.OK);
         } else {
@@ -82,7 +68,7 @@ public class FeedbackController {
         }
     }
 
-    // Delete a feedback - accessible by admins only
+    // Delete a feedback
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteFeedback(@PathVariable int id) {

@@ -54,7 +54,6 @@ public class UserController {
 
     // Delete a user by ID - accessible by admins only
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
